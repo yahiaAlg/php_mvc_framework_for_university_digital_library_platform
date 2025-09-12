@@ -6,9 +6,19 @@ class Project extends Model
 {
     protected string $table = 'projects';
     protected array $fillable = [
-        'title', 'description', 'author_name', 'supervisor',
-        'specialization_id', 'user_id', 'file_path', 'year',
-        'keywords', 'status', 'created_at', 'updated_at'
+        'title',
+        'description',
+        'author_name',
+        'supervisor',
+        'specialization_id',
+        'user_id',
+        'image_path',
+        'file_path',
+        'year',
+        'keywords',
+        'status',
+        'created_at',
+        'updated_at'
     ];
 
     public function findWithDetails(int $id): ?array
@@ -34,23 +44,23 @@ class Project extends Model
     public function search(?string $query = null, array $conditions = [], int $page = 1, int $perPage = 12): array
     {
         $offset = ($page - 1) * $perPage;
-        
+
         $sql = "
             SELECT p.*, s.name as specialization_name, s.faculty
             FROM {$this->table} p
             LEFT JOIN specializations s ON p.specialization_id = s.id
             WHERE p.status = 'approved'
         ";
-        
+
         $params = [];
-        
+
         // Add search conditions
         if ($query) {
             $sql .= " AND (p.title LIKE ? OR p.description LIKE ? OR p.keywords LIKE ? OR p.author_name LIKE ?)";
             $searchTerm = "%{$query}%";
             $params = array_fill(0, 4, $searchTerm);
         }
-        
+
         // Add other conditions
         if (!empty($conditions)) {
             foreach ($conditions as $column => $value) {
@@ -58,15 +68,15 @@ class Project extends Model
                 $params[] = $value;
             }
         }
-        
+
         // Get total count
         $countSql = str_replace('SELECT p.*, s.name as specialization_name, s.faculty', 'SELECT COUNT(*) as total', $sql);
         $total = $this->database->query($countSql, $params)->fetch()['total'];
-        
+
         // Add ordering and pagination
         $sql .= " ORDER BY p.created_at DESC LIMIT {$perPage} OFFSET {$offset}";
         $results = $this->database->query($sql, $params)->fetchAll();
-        
+
         return [
             'data' => $results,
             'total' => $total,
@@ -93,7 +103,7 @@ class Project extends Model
     public function count(): int
     {
         return $this->database->query("SELECT COUNT(*) as count FROM {$this->table}")
-                              ->fetch()['count'];
+            ->fetch()['count'];
     }
 
     public function countByStatus(string $status): int
@@ -108,14 +118,14 @@ class Project extends Model
     {
         $data['created_at'] = date('Y-m-d H:i:s');
         $data['updated_at'] = date('Y-m-d H:i:s');
-        
+
         return parent::create($data);
     }
 
     public function update(int $id, array $data): bool
     {
         $data['updated_at'] = date('Y-m-d H:i:s');
-        
+
         return parent::update($id, $data);
     }
 }

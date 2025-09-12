@@ -101,6 +101,12 @@
             color: #b52626;
         }
 
+        .footer,
+        .footer-bottom {
+            background-color: transparent;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .register-container {
                 max-width: 400px;

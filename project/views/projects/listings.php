@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/css/browse.css">
 
 <!-- Search Bar -->
-<div class="search-filters">
+<div class="search-filters" style="margin-top: 20vh;">
     <div class="search-bar">
         <form method="GET" action="/projects" style="display: flex; width: 100%; max-width: 800px;">
             <input type="text"
@@ -27,7 +27,7 @@
 
             <div class="filter-group">
                 <label for="year">Year</label>
-                <select id="year" name="year" onchange="document.getElementById('filterForm').submit();">
+                <select class="sort-dropdown" id="year" name="year" onchange="document.getElementById('filterForm').submit();">
                     <option value="">All Years</option>
                     <?php for ($year = date('Y'); $year >= 2020; $year--): ?>
                         <option value="<?php echo $year; ?>" <?php echo (($_GET['year'] ?? '') == $year) ? 'selected' : ''; ?>>
@@ -39,7 +39,7 @@
 
             <div class="filter-group">
                 <label for="specialization">Specialization</label>
-                <select id="specialization" name="specialization" onchange="document.getElementById('filterForm').submit();">
+                <select class="sort-dropdown" id="specialization" name="specialization" onchange="document.getElementById('filterForm').submit();">
                     <option value="">All Specializations</option>
                     <?php foreach ($specializations as $spec): ?>
                         <option value="<?php echo $spec['id']; ?>"
@@ -52,7 +52,7 @@
 
             <div class="filter-group">
                 <label for="status">Status</label>
-                <select id="status" name="status" onchange="document.getElementById('filterForm').submit();">
+                <select class="sort-dropdown" id="status" name="status" onchange="document.getElementById('filterForm').submit();">
                     <option value="">All Status</option>
                     <option value="approved" <?php echo (($_GET['status'] ?? '') == 'approved') ? 'selected' : ''; ?>>Approved</option>
                     <option value="pending" <?php echo (($_GET['status'] ?? '') == 'pending') ? 'selected' : ''; ?>>Pending</option>
@@ -62,7 +62,7 @@
             <!-- Sort option -->
             <div class="sort-container">
                 <label for="sort-options" class="sort-label">Sort by:</label>
-                <select id="sort-options" class="sort-dropdown" name="sort" onchange="document.getElementById('filterForm').submit();">
+                <select class="sort-dropdown" id="sort-options" name="sort" onchange="document.getElementById('filterForm').submit();">
                     <option value="created_at_desc" <?php echo (($_GET['sort'] ?? '') == 'created_at_desc') ? 'selected' : ''; ?>>Most Recent</option>
                     <option value="title_asc" <?php echo (($_GET['sort'] ?? '') == 'title_asc') ? 'selected' : ''; ?>>Title (A-Z)</option>
                     <option value="year_desc" <?php echo (($_GET['sort'] ?? '') == 'year_desc') ? 'selected' : ''; ?>>Year (Newest)</option>
@@ -88,7 +88,9 @@
         <?php if (!empty($projects['data'])): ?>
             <?php foreach ($projects['data'] as $project): ?>
                 <div class="card">
-                    <img src="/images/default-project.png" alt="Project Image" class="card-img">
+                    <a href="/projects/<?php echo $project['id']; ?>">
+                        <img src="<?= $view->escape(str_replace("public", "", $project['image_path'])) ?>" alt="Project Image" class="card-img">
+                    </a>
                     <div class="card-content">
                         <div class="card-title">
                             <?php echo $view->escape($project['title']); ?>

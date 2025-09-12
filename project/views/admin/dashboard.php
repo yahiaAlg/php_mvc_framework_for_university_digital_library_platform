@@ -230,7 +230,7 @@
                 <div class="nav-title">Specializations</div>
                 <div class="nav-description">Add and manage academic specializations</div>
             </a>
-            <a href="/projects" class="admin-nav-card">
+            <a href="/admin/projects" class="admin-nav-card">
                 <div class="nav-icon">📚</div>
                 <div class="nav-title">All Projects</div>
                 <div class="nav-description">Browse and manage all projects</div>

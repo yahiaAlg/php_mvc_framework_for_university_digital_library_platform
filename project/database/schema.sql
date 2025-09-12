@@ -43,6 +43,7 @@ CREATE TABLE
         supervisor VARCHAR(100) NOT NULL,
         specialization_id INT NOT NULL,
         user_id INT NOT NULL,
+        image_path VARCHAR(255) DEFAULT '/images/default-project.png',
         file_path VARCHAR(255) NOT NULL,
         year YEAR NOT NULL,
         keywords TEXT,

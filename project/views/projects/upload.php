@@ -227,6 +227,13 @@
             </div>
 
             <div class="file-upload-section">
+                <div class="file-upload-title">Image File</div>
+                <div class="file-upload-note">
+                    Upload your image document (PNG, JPEG, JPG). Maximum file size: 10MB
+                </div>
+                <input type="file" name="image_file" class="file-input" accept=".png,.jpeg,.jpg" required>
+            </div>
+            <div class="file-upload-section">
                 <div class="file-upload-title">Project File</div>
                 <div class="file-upload-note">
                     Upload your project document (PDF, DOC, DOCX). Maximum file size: 10MB

@@ -18,8 +18,9 @@
        }
 
        .login-container {
+           margin-top: 10%;
            width: 100%;
-           max-width: 400px;
+           width: 50vw;
            background-color: #eee;
            padding: 40px;
            border-radius: 8px;
@@ -99,6 +100,12 @@
        .signup-link a:hover {
            text-decoration: underline;
            color: #b52626;
+       }
+
+       .footer,
+       .footer-bottom {
+           background-color: transparent;
+           width: 100%;
        }
 
        @media (max-width: 768px) {

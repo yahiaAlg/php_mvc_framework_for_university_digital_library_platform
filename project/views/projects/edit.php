@@ -253,7 +253,13 @@
                     <?php echo $view->escape(basename($project['file_path'])); ?>
                 </div>
             </div>
-
+            <div class="file-upload-section">
+                <div class="file-upload-title">Image File</div>
+                <div class="file-upload-note">
+                    Upload your image document (PNG, JPEG, JPG). Maximum file size: 10MB
+                </div>
+                <input type="file" name="image_file" class="file-input" accept=".png,.jpeg,.jpg">
+            </div>
             <div class="file-upload-section">
                 <div class="file-upload-title">Replace File (Optional)</div>
                 <div class="file-upload-note">

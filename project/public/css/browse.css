@@ -162,6 +162,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 25%;
 }
 
 .filter-group label {
@@ -184,6 +185,7 @@ body {
   gap: 5px;
   align-items: center;
   margin-left: 600px;
+  width: 25%;
 }
 
 .sort-label {
@@ -195,6 +197,7 @@ body {
 }
 
 .sort-dropdown {
+  width: 100%;
   padding: 8px 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
@@ -295,11 +298,16 @@ body {
   .filters {
     flex-direction: column;
   }
-
+  .sort-container {
+    
+    width: 100%;
+  }
   .filter-group {
     flex-direction: row;
     align-items: center;
     gap: 10px;
+    width: 100%;
+    
   }
 }
 

@@ -1,6 +1,6 @@
 <?php include 'header.php'; ?>
 
-<main>
+<main style="margin-top: 9vh;">
     <?php echo $content; ?>
 </main>
 

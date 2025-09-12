@@ -34,13 +34,21 @@
             </div>
 
             <div class="preview-images">
-                <div class="main-preview">
-                    <div class="main-preview-content">
-                        <i class="bi bi-file-earmark-text" style="font-size: 48px; color: #ccc;"></i>
-                        <p>Document Preview</p>
-                        <small>Click download to view full document</small>
+                <?php if (!isset($project['image_path'])): ?>
+                    <div class="main-preview">
+                        <div class="main-preview-content">
+                            <i class="bi bi-file-earmark-text" style="font-size: 48px; color: #ccc;"></i>
+                            <p>Document Preview</p>
+                            <small>Click download to view full document</small>
+                        </div>
                     </div>
-                </div>
+                <?php else: ?>
+                    <div class="main-preview" style="
+                        background-image: url('<?= $view->escape(str_replace("public", "", $project['image_path'])) ?>');
+                        background-size: cover;
+                        background-position: center;">
+                    </div>
+                <?php endif ?>
                 <div class="secondary-previews">
                     <div class="secondary-preview">
                         <?php
@@ -50,8 +58,8 @@
                     </div>
                     <div class="secondary-preview">
                         <?php
-                        if (file_exists($project['file_path'])) {
-                            echo number_format(filesize($project['file_path']) / 1024 / 1024, 1) . ' MB';
+                        if (isset($project_size) && !empty($project_size)) {
+                            echo number_format($project_size, 2) . ' MB';
                         } else {
                             echo 'File Size';
                         }
@@ -132,8 +140,8 @@
                     <div class="metadata-label">File Size</div>
                     <div class="metadata-value">
                         <?php
-                        if (file_exists($project['file_path'])) {
-                            echo number_format(filesize($project['file_path']) / 1024 / 1024, 1) . ' MB';
+                        if (isset($project_size) && !empty($project_size)) {
+                            echo number_format($project_size, 2) . ' MB';
                         } else {
                             echo 'N/A';
                         }
@@ -200,7 +208,7 @@
             <div class="sidebar-header">Download Options</div>
             <div class="sidebar-content">
                 <?php if ($project['status'] === 'approved' || ($user && $user['id'] == $project['user_id'])): ?>
-                    <a href="/projects/download/<?php echo $project['id']; ?>" class="download-btn">
+                    <a href="<?= $view->escape(str_replace("public", "", $project['file_path'])) ?>" class="download-btn">
                         <i class="bi bi-download"></i>
                         Download <?php echo strtoupper(pathinfo($project['file_path'], PATHINFO_EXTENSION)); ?>
                     </a>
@@ -227,8 +235,10 @@
                         <?php endif; ?>
                     </p>
                     <p>Uploaded: <?php echo date('M Y', strtotime($project['created_at'])); ?></p>
-                    <?php if (file_exists($project['file_path'])): ?>
-                        <p>File size: <?php echo number_format(filesize($project['file_path']) / 1024 / 1024, 1); ?> MB</p>
+
+                    <?php if (isset($project_size) && !empty($project_size)): ?>
+
+                        <p>File size: <?php echo number_format($project_size, 2); ?> MB</p>
                     <?php endif; ?>
                 </div>
             </div>
