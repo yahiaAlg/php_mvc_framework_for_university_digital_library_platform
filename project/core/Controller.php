@@ -16,13 +16,25 @@ abstract class Controller
         $this->validator = new Validator();
     }
 
-    protected function render(string $view, array $data = []): void
+    protected function render(string $viewName, array $data = []): void
     {
+        echo "DEBUG Controller::render() called with viewName: ";
+        var_dump($viewName);
+        echo "\n";
+
         $data['user'] = $this->getCurrentUser();
         $data['errors'] = $this->session->getFlash('errors') ?? [];
         $data['success'] = $this->session->getFlash('success') ?? '';
-        
-        $this->view->render($view, $data);
+        $data['view'] = $this->view;
+
+        echo "DEBUG About to call \$this->view->render() with parameters:\n";
+        echo "First param (should be viewName): ";
+        var_dump($viewName);
+        echo "Second param (data array keys): ";
+        var_dump(array_keys($data));
+        echo "\n";
+
+        $this->view->render($viewName, $data);
     }
 
     protected function redirect(string $path): void

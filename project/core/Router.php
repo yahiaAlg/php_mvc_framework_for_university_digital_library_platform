@@ -40,10 +40,10 @@ class Router
     private function executeHandler(array $handler, string $uri, string $pattern): void
     {
         [$controllerName, $method] = $handler;
-        
+
         // Extract parameters from URI
         $params = $this->extractParameters($pattern, $uri);
-        
+
         // Load controller
         $controllerFile = __DIR__ . "/../controllers/{$controllerName}.php";
         if (!file_exists($controllerFile)) {
@@ -51,13 +51,13 @@ class Router
         }
 
         require_once $controllerFile;
-        
+
         if (!class_exists($controllerName)) {
             throw new Exception("Controller class not found: {$controllerName}");
         }
 
         $controller = new $controllerName();
-        
+
         if (!method_exists($controller, $method)) {
             throw new Exception("Method not found: {$controllerName}::{$method}");
         }
@@ -73,10 +73,10 @@ class Router
         $regex = "/^{$regex}$/";
 
         preg_match($regex, $uri, $matches);
-        
+
         // Remove the full match, return only captured groups
         array_shift($matches);
-        
+
         return $matches;
     }
 }
