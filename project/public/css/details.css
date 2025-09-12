@@ -9,61 +9,6 @@ body {
   background-color: #fafafa;
 }
 
-/* Navigation */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #414040;
-  color: #fff;
-  padding: 50px 20px;
-  height: 70px;
-}
-
-.navbar a {
-  text-decoration: none;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-img {
-  width: 70px;
-  height: 70px;
-}
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  color: #ddd;
-}
-
-.logo-title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.logo-subtitle {
-  font-size: 16px;
-  letter-spacing: 1.5px;
-}
-
-.sign-in-link {
-  background-color: #b52626;
-  color: #ddd;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.sign-in-link:hover {
-  background-color: #8d1d1d;
-}
 
 /* Main Container */
 .main-container {

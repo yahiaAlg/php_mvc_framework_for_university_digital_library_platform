@@ -24,7 +24,7 @@
     <!-- Navigation -->
     <nav class="navbar sticky">
         <div class="logo">
-            <img src="/images/unilogo.png" alt="Logo" class="logo-img">
+            <a href="/"><img src="/images/unilogo.png" alt="Logo" class="logo-img"></a>
             <div class="logo-text">
                 <div class="logo-title">UniGrad</div>
                 <div class="logo-subtitle">Inspiring Tomorrow</div>
@@ -34,8 +34,8 @@
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/projects">Browse</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#cta">Contact Us</a></li>
+            <li><a href="/#about">About</a></li>
+            <li><a href="/#cta">Contact Us</a></li>
         </ul>
 
         <?php if ($user): ?>
