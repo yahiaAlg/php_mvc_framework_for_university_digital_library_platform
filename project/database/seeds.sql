@@ -20,6 +20,125 @@ ALTER TABLE projects AUTO_INCREMENT = 1;
 
 ALTER TABLE users AUTO_INCREMENT = 2;
 
+-- Insert specializations first
+INSERT INTO
+    specializations (id, name, faculty, description)
+VALUES
+    (
+        1,
+        'Computer Science',
+        'Faculty of Engineering',
+        'Software development, algorithms, and computational theory'
+    ),
+    (
+        2,
+        'Information Systems',
+        'Faculty of Engineering',
+        'Business information systems and data management'
+    ),
+    (
+        3,
+        'Software Engineering',
+        'Faculty of Engineering',
+        'Software design, development methodologies, and project management'
+    ),
+    (
+        4,
+        'Computer Networks',
+        'Faculty of Engineering',
+        'Network infrastructure, security, and distributed systems'
+    ),
+    (
+        5,
+        'Artificial Intelligence',
+        'Faculty of Engineering',
+        'Machine learning, neural networks, and intelligent systems'
+    ),
+    (
+        6,
+        'Cybersecurity',
+        'Faculty of Engineering',
+        'Information security, cryptography, and risk management'
+    ),
+    (
+        7,
+        'Data Science',
+        'Faculty of Engineering',
+        'Big data analytics, statistical modeling, and data visualization'
+    ),
+    (
+        8,
+        'Mobile Development',
+        'Faculty of Engineering',
+        'iOS and Android application development'
+    ),
+    (
+        9,
+        'Web Development',
+        'Faculty of Engineering',
+        'Full-stack web applications and modern frameworks'
+    ),
+    (
+        10,
+        'Database Systems',
+        'Faculty of Engineering',
+        'Database design, optimization, and management'
+    );
+
+-- Insert categories if they don't exist
+INSERT IGNORE INTO categories (id, name, description)
+VALUES
+    (
+        1,
+        'Web Application',
+        'Projects involving web-based applications'
+    ),
+    (
+        2,
+        'Mobile Application',
+        'Projects for mobile platforms (iOS, Android)'
+    ),
+    (
+        3,
+        'Machine Learning',
+        'Projects utilizing ML algorithms and techniques'
+    ),
+    (
+        4,
+        'Data Analysis',
+        'Projects focused on data processing and analysis'
+    ),
+    (
+        5,
+        'Security',
+        'Projects related to cybersecurity and information security'
+    ),
+    (
+        6,
+        'Networking',
+        'Projects involving computer networks and protocols'
+    ),
+    (
+        7,
+        'Database',
+        'Projects focused on database design and management'
+    ),
+    (
+        8,
+        'Algorithm',
+        'Projects involving algorithmic solutions and optimization'
+    ),
+    (
+        9,
+        'User Interface',
+        'Projects emphasizing UI/UX design and development'
+    ),
+    (
+        10,
+        'Research',
+        'Theoretical research and academic studies'
+    );
+
 -- Insert sample student users
 INSERT INTO
     users (
@@ -382,97 +501,77 @@ VALUES
 INSERT INTO
     project_categories (project_id, category_id)
 VALUES
-    -- AI Code Review System
     (1, 1),
     (1, 3),
     (1, 8),
-    -- Blockchain Voting
     (2, 1),
     (2, 5),
     (2, 10),
-    -- Hospital Management
     (3, 1),
     (3, 4),
     (3, 7),
-    -- Smart Campus
     (4, 1),
     (4, 4),
     (4, 6),
-    -- Microservices E-Learning
     (5, 1),
     (5, 2),
-    -- Collaborative Code Editor
     (6, 1),
     (6, 9),
-    -- 5G Optimizer
     (7, 6),
     (7, 3),
     (7, 8),
-    -- Network Security Dashboard
     (8, 1),
     (8, 5),
     (8, 6),
-    -- Medical Computer Vision
     (9, 3),
     (9, 4),
     (9, 10),
-    -- NLP Chatbot
     (10, 1),
     (10, 3),
     (10, 9),
-    -- Malware Detection
     (11, 5),
     (11, 3),
     (11, 8),
-    -- Zero-Trust Architecture
     (12, 5),
     (12, 6),
     (12, 10),
-    -- Smart Cities Analytics
     (13, 4),
     (13, 3),
     (13, 10),
-    -- Supply Chain Predictive
     (14, 4),
     (14, 3),
     (14, 8),
-    -- Fitness Tracking App
     (15, 2),
     (15, 4),
     (15, 9),
-    -- AR Shopping App
     (16, 2),
     (16, 9),
     (16, 1),
-    -- News PWA
     (17, 1),
     (17, 9),
     (17, 4),
-    -- Analytics Dashboard
     (18, 1),
     (18, 4),
     (18, 9),
-    -- Distributed Database
     (19, 7),
     (19, 8),
     (19, 10),
-    -- IoT NoSQL Database
     (20, 7),
     (20, 4),
     (20, 6);
 
--- Update user count to reflect new users
+-- Update timestamps
 UPDATE users
 SET
-    created_at = DATE_SUB (NOW (), INTERVAL FLOOR(RAND () * 365) DAY)
+    created_at = DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 365) DAY)
 WHERE
     id > 1;
 
 UPDATE projects
 SET
-    created_at = DATE_SUB (NOW (), INTERVAL FLOOR(RAND () * 200) DAY);
+    created_at = DATE_SUB(NOW(), INTERVAL FLOOR(RAND() * 200) DAY);
 
--- Add some projects with different years
+-- Update years for some projects
 UPDATE projects
 SET
     year = 2023
@@ -485,7 +584,7 @@ SET
 WHERE
     id IN (2, 6);
 
--- Set some projects as rejected for testing
+-- Set some projects as rejected
 UPDATE projects
 SET
     status = 'rejected'

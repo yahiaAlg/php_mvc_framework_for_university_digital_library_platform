@@ -46,23 +46,28 @@ project-root/
 ## Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd digital-library
    ```
 
 2. **Set up the database**
+
    - Create a MySQL database named `digital_library`
    - Import the schema from `schema/database.sql`
+
    ```bash
-   mysql -u root -p digital_library < schema/database.sql
+   mysql -u root -p digital_library < database/schema.sql
    ```
 
 3. **Configure the application**
+
    - Copy environment variables or modify `config/database.php`
    - Set database credentials and other settings
 
 4. **Set up file permissions**
+
    ```bash
    chmod 755 public/uploads/
    chmod 644 public/uploads/*
@@ -71,7 +76,9 @@ project-root/
 5. **Configure web server**
    - Point document root to the `public/` directory
    - Enable URL rewriting (mod_rewrite for Apache)
-
+    ```bash
+    php -S localhost:8000 -t public/
+    ```
 ## Configuration
 
 ### Database Configuration
@@ -109,6 +116,7 @@ return [
 After running the database schema, you can log in with:
 
 - **Admin Account**
+
   - Email: `admin@university.edu`
   - Password: `admin123`
 
