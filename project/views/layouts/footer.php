@@ -4,7 +4,7 @@
       <div class="footer-container">
           <!-- Left Section: Logo, Description, and Student Login -->
           <div class="footer-left">
-              <img src="images\unilogo.png" alt="Logo" class="logo-img">
+              <a href="/"><img src="images\unilogo.png" alt="Logo" class="logo-img"></a>
               <p class="description">
                   We help students and researchers access thesis, projects , research papers in their long run.<br>
                   <strong><i><small>"Together we build a bright future."</small></i></strong>
@@ -70,3 +70,11 @@
 
 
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  </body>
+
+  </html>
