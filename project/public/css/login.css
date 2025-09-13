@@ -1,0 +1,202 @@
+/* CSS will go here */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "rubik", "sans-serif";
+}
+
+body {
+    background-color: #414040;
+    color: #fafafa;
+    min-height: 100vh;
+    gap: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    /* Changed from center to flex-start */
+    align-items: center;
+    position: relative;
+    padding: 1% 1% 0;
+    /* Added padding to push content below header */
+}
+
+.header {
+    position: absolute;
+    top: 30px;
+    /* Increased from 20px for better spacing */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 10;
+    /* Added z-index to ensure header stays on top */
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.logo-img {
+    width: 80px;
+    height: 80px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+    background-color: #444;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e74c3c;
+    font-size: 24px;
+}
+
+.logo-text {
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #ddd;
+    text-align: left;
+}
+
+.logo-title {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.logo-subtitle {
+    font-size: 18px;
+    letter-spacing: 1.5px;
+}
+
+.sign-in-link {
+    background-color: #b52626;
+    color: #ddd;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sign-in-link:hover {
+    background-color: #8d1d1d;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background-color: #eee;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    margin-top: 40px;
+    /* Kept this for additional spacing */
+}
+
+.login-title {
+    font-family: "Rubik", "sans-serif";
+    font-size: 30px;
+    font-weight: 700;
+    color: #666;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #b52626;
+}
+
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.forgot-password:hover {
+    color: #b52626;
+}
+
+.login-button {
+    background-color: #555;
+    color: #ddd;
+    border: none;
+    padding: 15px 30px;
+    margin: 15px 97px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+    background-color: #333;
+}
+
+.signup-link {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #666;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+    color: #b52626;
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 160px;
+        /* Increased padding for mobile */
+    }
+
+    .header {
+        top: 20px;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        height: auto;
+        /* Allow header to expand naturally */
+    }
+
+    .logo-container {
+        justify-content: center;
+        margin: 0 auto;
+    }
+
+    .sign-in-link {
+        margin: 0 auto;
+        width: fit-content;
+    }
+}

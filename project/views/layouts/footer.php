@@ -21,9 +21,9 @@
               <div class="footer-column">
                   <h3 class="column-title">Resources</h3>
                   <ul class="column-list">
-                      <li><a href="#">Find Thesis Papers</a></li>
-                      <li><a href="#">Research Projects</a></li>
-                      <li><a href="#">Academic Resources</a></li>
+                      <li><a href="/projects/">Find Thesis Papers</a></li>
+                      <li><a href="/projects/">Research Projects</a></li>
+                      <li><a href="/projects/">Academic Resources</a></li>
                   </ul>
               </div>
 
@@ -31,9 +31,9 @@
               <div class="footer-column">
                   <h3 class="column-title">Who We Help</h3>
                   <ul class="column-list">
-                      <li><a href="#">Students</a></li>
-                      <li><a href="#">Researchers</a></li>
-                      <li><a href="#">Academic Professionals</a></li>
+                      <li><a href="/login">Students</a></li>
+                      <li><a href="/login">Researchers</a></li>
+                      <li><a href="/login">Academic Professionals</a></li>
                   </ul>
               </div>
 
