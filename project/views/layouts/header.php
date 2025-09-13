@@ -55,7 +55,17 @@ $isProjectDetail = preg_match('/^\/projects\/\d+$/', $currentPath);
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
 
+    <style>
+        .btn-primary {
+            background-color: #8d1d1d;
+            border-color: #8d1d1d;
+        }
 
+        .btn-primary:hover {
+            background-color: #8d1d1d;
+            border-color: #8d1d1d;
+        }
+    </style>
 </head>
 
 <body>

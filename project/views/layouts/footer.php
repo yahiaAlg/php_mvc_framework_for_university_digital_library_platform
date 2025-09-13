@@ -41,9 +41,8 @@
               <div class="footer-column">
                   <h3 class="column-title">About Us</h3>
                   <ul class="column-list">
-                      <li><a href="#">About UniGrad</a></li>
-                      <li><a href="#">Blog</a></li>
-                      <li><a href="#">Contact Us</a></li>
+                      <li><a href="/about">About UniGrad</a></li>
+                      <li><a href="/#contact">Contact Us</a></li>
                   </ul>
               </div>
           </div>
@@ -53,7 +52,7 @@
       <div class="footer-bottom">
           <div class="footer-bottom-container">
               <div class="copyright">
-                  <p>Copyright &copy;<span class="year">2025</span> by UniGrad. All rights reserved to Manar Belkadi.</p>
+                  <p>Copyright &copy;<span class="year">2025</span> by UniGrad. All rights reserved to Manar.</p>
               </div>
               <div class="footer-links-bottom">
                   <a href="#">Privacy Policy</a>
