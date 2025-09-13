@@ -44,7 +44,11 @@ class ProjectController extends Controller
         // print_r(filesize(BASE_PATH . "/" . $project['file_path']));
         // echo '</pre>';
         // die();
-        $project_size = filesize(BASE_PATH . "/" . $project['file_path']) / 1024 / 1024;
+        if (file_exists(BASE_PATH . "/" . $project['file_path'])) {
+            $project_size = filesize(BASE_PATH . "/" . $project['file_path']) / 1024 / 1024;
+        } else {
+            $project_size = "";
+        }
         // die($project_size);
         if (!$project) {
             throw new Exception('Project not found', 404);

@@ -1,184 +1,91 @@
-/* Navbar Styles */
+/* ******************************* */
+/* Navigation */
+
+body {
+    margin: 0;
+    font-family: "rubik", sans-serif;
+}
+
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-}
-
-.navbar.sticky {
-    position: fixed;
-    top: 0;
-    background-color: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: #eee;
+    color: #fff;
+    padding: 0 20px;
+    height: 70px;
 }
 
 .logo {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
 }
 
 .logo-img {
-    width: 40px;
-    height: 40px;
-    border-radius: 8px;
+    width: 70px;
+    height: 70px;
 }
 
 .logo-text {
     display: flex;
     flex-direction: column;
+    color: #b52626;
 }
 
 .logo-title {
-    font-family: "Rubik", sans-serif;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
-    color: #b52626;
-    line-height: 1;
+    letter-spacing: 0.5px;
 }
 
 .logo-subtitle {
-    font-family: "Rubik", sans-serif;
-    font-size: 12px;
-    color: #666;
-    line-height: 1;
+    font-size: 16px;
+    letter-spacing: 1.5px;
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 30px;
     margin: 0;
     padding: 0;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .nav-links a {
+    color: #414040;
     text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    font-size: 16px;
-    transition: color 0.3s ease;
-    position: relative;
 }
 
 .nav-links a:hover {
-    color: #b52626;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -5px;
-    left: 0;
-    background-color: #b52626;
-    transition: width 0.3s ease;
-}
-
-.nav-links a:hover::after {
-    width: 100%;
+    color: #8d1d1d;
 }
 
 .contact-btn {
     background-color: #b52626;
-    color: white;
+    color: #ddd;
     padding: 10px 20px;
     border-radius: 25px;
     text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    border: 2px solid #b52626;
+    font-size: 18px;
 }
 
 .contact-btn:hover {
     background-color: #8d1d1d;
-    border-color: #8d1d1d;
-    color: white;
-    text-decoration: none;
 }
 
-/* User Dropdown Styles */
-.user-dropdown {
-    position: relative;
-}
+/* STICKY NAVIGATION */
 
-.user-dropdown .contact-btn {
-    background-color: #b52626;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.user-dropdown .dropdown-menu {
-    min-width: 200px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e5e7eb;
-}
-
-.user-dropdown .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    transition: background-color 0.2s ease;
-}
-
-.user-dropdown .dropdown-item:hover {
-    background-color: #f3f4f6;
-    color: #b52626;
-}
-
-.user-dropdown .dropdown-item i {
-    width: 16px;
-    text-align: center;
-}
-
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 1rem;
-        flex-wrap: wrap;
-    }
-
-    .nav-links {
-        display: none;
-        width: 100%;
-        flex-direction: column;
-        gap: 1rem;
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e5e7eb;
-    }
-
-    .nav-links.active {
-        display: flex;
-    }
-
-    .contact-btn {
-        padding: 8px 16px;
-        font-size: 14px;
-    }
-
-    .logo-title {
-        font-size: 16px;
-    }
-
-    .logo-subtitle {
-        font-size: 11px;
-    }
-
-    .logo-img {
-        width: 35px;
-        height: 35px;
-    }
+.sticky.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-color: rgba(255, 255, 255, 0.97);
+    z-index: 999;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.03);
 }

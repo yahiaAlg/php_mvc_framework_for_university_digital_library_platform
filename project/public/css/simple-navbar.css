@@ -1,0 +1,87 @@
+/* Simple Navigation for Login, Register, and Project Pages */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: "rubik", "sans-serif";
+}
+
+/* Navigation */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #414040;
+    color: #fff;
+
+    height: 70px;
+    width: 100%;
+}
+
+.navbar a {
+    text-decoration: none;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 70px;
+    height: 70px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    color: #ddd;
+}
+
+.logo-title {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.logo-subtitle {
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
+
+.sign-in-link {
+    background-color: #b52626;
+    color: #ddd;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.sign-in-link:hover {
+    background-color: #8d1d1d;
+    color: #ddd;
+}
+
+/* Hide elements that shouldn't appear in simple navbar */
+.nav-links {
+    display: none;
+}
+
+/* User dropdown styling for logged-in users */
+.user-dropdown .contact-btn {
+    background-color: #b52626;
+    color: #ddd;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 18px;
+    border: none;
+}
+
+.user-dropdown .contact-btn:hover {
+    background-color: #8d1d1d;
+    color: #ddd;
+}

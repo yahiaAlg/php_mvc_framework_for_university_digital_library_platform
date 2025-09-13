@@ -1,3 +1,29 @@
+<?php
+// Determine current page from REQUEST_URI
+$currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$currentPath = rtrim($currentPath, '/') ?: '/';
+
+// Define pages that should use the simple navbar
+$simpleNavbarPages = ['/login', '/register'];
+
+// Check if current path should use simple navbar
+$useSimpleNavbar = false;
+foreach ($simpleNavbarPages as $page) {
+    if ($currentPath === $page) {
+        $useSimpleNavbar = true;
+        break;
+    }
+}
+
+// Check for projects detail page (no navbar CSS)
+$isProjectDetail = preg_match('/^\/projects\/\d+$/', $currentPath);
+
+// Also check for other projects pages (use simple navbar)
+if ($currentPath === '/projects' || strpos($currentPath, '/projects/') === 0) {
+    $useSimpleNavbar = true;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -8,78 +34,132 @@
     <link rel="icon" type="image/png" href="/images/unilogo.png">
 
     <!-- Stylesheets -->
-    <link href="/css/style.css" rel="stylesheet">
-    <link href="/css/navbar.css" rel="stylesheet">
+    <?php if ($currentPath === '/' || $currentPath === '/home'): ?>
+        <link href="/css/style.css" rel="stylesheet">
+    <?php endif; ?>
+    <?php if ($isProjectDetail): ?>
+        <!-- Project detail page - no navbar CSS, uses details.css instead -->
+    <?php elseif ($useSimpleNavbar): ?>
+        <link href="/css/simple-navbar.css" rel="stylesheet">
+    <?php else: ?>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+        <link href="/css/navbar.css" rel="stylesheet">
+    <?php endif; ?>
     <link href="/css/footer.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
-    <style>
-        .btn-primary {
-            background-color: #b52626;
-            border-color: #b52626;
-        }
-    </style>
+
+
 </head>
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar sticky">
-        <div class="logo">
-            <a href="/"><img src="/images/unilogo.png" alt="Logo" class="logo-img"></a>
-            <div class="logo-text">
-                <div class="logo-title">UniGrad</div>
-                <div class="logo-subtitle">Inspiring Tomorrow</div>
-            </div>
-        </div>
-
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/projects">Browse</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/#cta">Contact Us</a></li>
-        </ul>
-
-        <?php if ($user): ?>
-            <div class="user-dropdown">
-                <button class="contact-btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
-                    <i class="bi bi-person-circle me-1"></i>
-                    <?php echo $view->escape($user['full_name']); ?>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li><a class="dropdown-item" href="/profile">
-                            <i class="bi bi-person me-2"></i>Profile
-                        </a></li>
-                    <li><a class="dropdown-item" href="/projects/dashboard">
-                            <i class="bi bi-collection me-2"></i>My Projects
-                        </a></li>
-                    <li><a class="dropdown-item" href="/projects/upload">
-                            <i class="bi bi-upload me-2"></i>Upload Project
-                        </a></li>
-                    <?php if ($user['role'] === 'admin'): ?>
+    <?php if ($useSimpleNavbar): ?>
+        <nav class="navbar">
+            <a href="/">
+                <div class="logo">
+                    <img src="/images/unilogo.png" alt="UniGrad Logo" class="logo-img">
+                    <div class="logo-text">
+                        <div class="logo-title">UniGrad</div>
+                        <div class="logo-subtitle">Inspiring Tomorrow</div>
+                    </div>
+                </div>
+            </a>
+            <?php if (!$user): ?>
+                <a href="/login" class="sign-in-link">Sign In</a>
+            <?php else: ?>
+                <div class="user-dropdown">
+                    <button class="contact-btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <?php echo $view->escape($user['full_name']); ?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/profile">
+                                <i class="bi bi-person me-2"></i>Profile
+                            </a></li>
+                        <li><a class="dropdown-item" href="/projects/dashboard">
+                                <i class="bi bi-collection me-2"></i>My Projects
+                            </a></li>
+                        <li><a class="dropdown-item" href="/projects/upload">
+                                <i class="bi bi-upload me-2"></i>Upload Project
+                            </a></li>
+                        <?php if ($user['role'] === 'admin'): ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/admin/dashboard">
+                                    <i class="bi bi-speedometer2 me-2"></i>Admin Panel
+                                </a></li>
+                        <?php endif; ?>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/admin/dashboard">
-                                <i class="bi bi-speedometer2 me-2"></i>Admin Panel
+                        <li><a class="dropdown-item" href="/logout">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
                             </a></li>
-                    <?php endif; ?>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li><a class="dropdown-item" href="/logout">
-                            <i class="bi bi-box-arrow-right me-2"></i>Logout
-                        </a></li>
-                </ul>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </nav>
+    <?php else: ?>
+        <nav class="navbar sticky">
+            <div class="logo">
+                <a href="/"><img src="/images/unilogo.png" alt="Logo" class="logo-img"></a>
+                <div class="logo-text">
+                    <div class="logo-title">UniGrad</div>
+                    <div class="logo-subtitle">Inspiring Tomorrow</div>
+                </div>
             </div>
-        <?php else: ?>
-            <a href="/login" class="contact-btn">Login</a>
-        <?php endif; ?>
-    </nav>
+
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/projects">Browse</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/#cta">Contact Us</a></li>
+            </ul>
+
+            <?php if ($user): ?>
+                <div class="user-dropdown">
+                    <button class="contact-btn dropdown-toggle" type="button" id="userDropdown" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle me-1"></i>
+                        <?php echo $view->escape($user['full_name']); ?>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="/profile">
+                                <i class="bi bi-person me-2"></i>Profile
+                            </a></li>
+                        <li><a class="dropdown-item" href="/projects/dashboard">
+                                <i class="bi bi-collection me-2"></i>My Projects
+                            </a></li>
+                        <li><a class="dropdown-item" href="/projects/upload">
+                                <i class="bi bi-upload me-2"></i>Upload Project
+                            </a></li>
+                        <?php if ($user['role'] === 'admin'): ?>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="/admin/dashboard">
+                                    <i class="bi bi-speedometer2 me-2"></i>Admin Panel
+                                </a></li>
+                        <?php endif; ?>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">
+                                <i class="bi bi-box-arrow-right me-2"></i>Logout
+                            </a></li>
+                    </ul>
+                </div>
+            <?php else: ?>
+                <a href="/login" class="contact-btn">Login</a>
+            <?php endif; ?>
+        </nav>
+    <?php endif; ?>
 
     <!-- Flash Messages -->
     <?php if (!empty($errors)): ?>

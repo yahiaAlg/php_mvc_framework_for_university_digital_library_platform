@@ -4,7 +4,7 @@
       <div class="footer-container">
           <!-- Left Section: Logo, Description, and Student Login -->
           <div class="footer-left">
-              <a href="/"><img src="images\unilogo.png" alt="Logo" class="logo-img"></a>
+              <a href="/"><img src="/images/unilogo.png" alt="Logo" class="logo-img"></a>
               <p class="description">
                   We help students and researchers access thesis, projects , research papers in their long run.<br>
                   <strong><i><small>"Together we build a bright future."</small></i></strong>
