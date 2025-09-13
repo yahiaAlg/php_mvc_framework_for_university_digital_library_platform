@@ -8,15 +8,15 @@ class HomeController extends Controller
     {
         $projectModel = new Project();
         $specializationModel = new Specialization();
-        
+
         // Get recent projects
         $recentProjects = $projectModel->getRecent(6);
-        
+
         // Get all specializations for search
         $specializations = $specializationModel->findAll();
-        
+
         $this->render('home/index', [
-            'title' => 'Welcome to Digital Library',
+            'title' => 'Home',
             'recentProjects' => $recentProjects,
             'specializations' => $specializations
         ]);
@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function about(): void
     {
         $this->render('about/index', [
-            'title' => 'About Digital Library'
+            'title' => 'About UniGrad'
         ]);
     }
 }

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo $view->escape($title ?? 'UniGrad - Digital Library'); ?></title>
+    <title><?php echo "UniGrad-" . $view->escape($title ?? 'UniGrad - Digital Library'); ?></title>
     <link rel="icon" type="image/png" href="/images/unilogo.png">
 
     <!-- Stylesheets -->
