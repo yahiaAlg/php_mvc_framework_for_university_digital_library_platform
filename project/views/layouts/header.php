@@ -34,7 +34,7 @@
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/projects">Browse</a></li>
-            <li><a href="/#about">About</a></li>
+            <li><a href="/about">About</a></li>
             <li><a href="/#cta">Contact Us</a></li>
         </ul>
 
