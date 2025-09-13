@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="/css/browse.css">
 
 <!-- Search Bar -->
-<div class="search-filters" style="margin-top: 20vh;">
+<div class="search-filters" style="<?= (!$user) ? 'margin-top: 10vh;' : 'margin-top: 20vh;' ?>">
     <div class="search-bar">
         <form method="GET" action="/projects" style="display: flex; width: 100%; max-width: 800px;">
             <input type="text"

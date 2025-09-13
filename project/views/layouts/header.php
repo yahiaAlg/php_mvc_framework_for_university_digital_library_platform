@@ -6,22 +6,24 @@ $currentPath = rtrim($currentPath, '/') ?: '/';
 // Define pages that should use the simple navbar
 $simpleNavbarPages = ['/login', '/register'];
 
-// Check if current path should use simple navbar
+// Check if current path should use simple navbar (only if not logged in)
 $useSimpleNavbar = false;
-foreach ($simpleNavbarPages as $page) {
-    if ($currentPath === $page) {
+if (!$user) {
+    foreach ($simpleNavbarPages as $page) {
+        if ($currentPath === $page) {
+            $useSimpleNavbar = true;
+            break;
+        }
+    }
+
+    // Also check for other projects pages (use simple navbar only if not logged in)
+    if ($currentPath === '/projects' || strpos($currentPath, '/projects/') === 0) {
         $useSimpleNavbar = true;
-        break;
     }
 }
 
 // Check for projects detail page (no navbar CSS)
 $isProjectDetail = preg_match('/^\/projects\/\d+$/', $currentPath);
-
-// Also check for other projects pages (use simple navbar)
-if ($currentPath === '/projects' || strpos($currentPath, '/projects/') === 0) {
-    $useSimpleNavbar = true;
-}
 ?>
 
 <!DOCTYPE html>
@@ -38,16 +40,15 @@ if ($currentPath === '/projects' || strpos($currentPath, '/projects/') === 0) {
         <link href="/css/style.css" rel="stylesheet">
     <?php endif; ?>
     <?php if ($isProjectDetail): ?>
-        <!-- Project detail page - no navbar CSS, uses details.css instead -->
+        <link href="/css/navbar.css" rel="stylesheet">
     <?php elseif ($useSimpleNavbar): ?>
         <link href="/css/simple-navbar.css" rel="stylesheet">
     <?php else: ?>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
         <link href="/css/navbar.css" rel="stylesheet">
     <?php endif; ?>
     <link href="/css/footer.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -59,7 +60,7 @@ if ($currentPath === '/projects' || strpos($currentPath, '/projects/') === 0) {
 
 <body>
     <!-- Navigation -->
-    <?php if ($useSimpleNavbar): ?>
+    <?php if ($useSimpleNavbar && (!$isProjectDetail)) : ?>
         <nav class="navbar">
             <a href="/">
                 <div class="logo">
