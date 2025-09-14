@@ -1,0 +1,229 @@
+/* RTL Styles for Arabic Language */
+
+/* Global RTL adjustments */
+[dir="rtl"] {
+    text-align: right;
+}
+
+/* Navbar adjustments */
+[dir="rtl"] .navbar {
+    direction: rtl;
+}
+
+[dir="rtl"] .nav-links {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .logo {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .logo-img {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .user-dropdown .dropdown-menu {
+    right: auto;
+    left: 0;
+}
+
+[dir="rtl"] .language-selector {
+    margin-right: 1rem;
+    margin-left: 0;
+}
+
+/* Hero section */
+[dir="rtl"] .hero-content {
+    text-align: right;
+}
+
+/* Services section */
+[dir="rtl"] .service-card {
+    text-align: right;
+}
+
+[dir="rtl"] .service-icon {
+    float: right;
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+/* Welcome section */
+[dir="rtl"] .welcome-section {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .profile-section {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .profile-icon {
+    margin-left: 1rem;
+    margin-right: 0;
+}
+
+/* Projects grid */
+[dir="rtl"] .project-card {
+    text-align: right;
+}
+
+[dir="rtl"] .project-meta {
+    flex-direction: row-reverse;
+}
+
+/* Forms */
+[dir="rtl"] .form-input-group label {
+    text-align: right;
+}
+
+[dir="rtl"] .form-row {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] input,
+[dir="rtl"] textarea,
+[dir="rtl"] select {
+    text-align: right;
+}
+
+/* Buttons */
+[dir="rtl"] .btn {
+    direction: rtl;
+}
+
+/* Tables */
+[dir="rtl"] .table th,
+[dir="rtl"] .table td {
+    text-align: right;
+}
+
+[dir="rtl"] .table th:first-child,
+[dir="rtl"] .table td:first-child {
+    text-align: right;
+}
+
+/* Pagination */
+[dir="rtl"] .pagination {
+    flex-direction: row-reverse;
+}
+
+/* Cards */
+[dir="rtl"] .card-body {
+    text-align: right;
+}
+
+/* Breadcrumb */
+[dir="rtl"] .breadcrumb {
+    flex-direction: row-reverse;
+}
+
+/* Dropdown menus */
+[dir="rtl"] .dropdown-menu {
+    right: 0;
+    left: auto;
+}
+
+[dir="rtl"] .dropdown-item {
+    text-align: right;
+}
+
+/* Icons in RTL */
+[dir="rtl"] .bi {
+    transform: scaleX(-1);
+}
+
+/* Don't flip these icons */
+[dir="rtl"] .bi-search,
+[dir="rtl"] .bi-upload,
+[dir="rtl"] .bi-download,
+[dir="rtl"] .bi-person-circle,
+[dir="rtl"] .bi-award,
+[dir="rtl"] .bi-grid-3x3-gap,
+[dir="rtl"] .bi-cloud-upload {
+    transform: none;
+}
+
+/* Footer adjustments */
+[dir="rtl"] .footer-container {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-columns {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-column {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-left {
+    text-align: right;
+}
+
+[dir="rtl"] .footer-bottom-container {
+    flex-direction: row-reverse;
+}
+
+/* Contact section */
+[dir="rtl"] .contact-container {
+    flex-direction: row-reverse;
+}
+
+/* Bootstrap RTL overrides */
+[dir="rtl"] .me-1 {
+    margin-right: 0 !important;
+    margin-left: 0.25rem !important;
+}
+
+[dir="rtl"] .me-2 {
+    margin-right: 0 !important;
+    margin-left: 0.5rem !important;
+}
+
+[dir="rtl"] .ms-1 {
+    margin-left: 0 !important;
+    margin-right: 0.25rem !important;
+}
+
+[dir="rtl"] .ms-2 {
+    margin-left: 0 !important;
+    margin-right: 0.5rem !important;
+}
+
+/* Language selector RTL */
+[dir="rtl"] .language-flag {
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+/* Alert RTL */
+[dir="rtl"] .alert {
+    text-align: right;
+}
+
+[dir="rtl"] .alert ul {
+    text-align: right;
+    padding-right: 1rem;
+    padding-left: 0;
+}
+
+/* Responsive adjustments for RTL */
+@media (max-width: 768px) {
+    [dir="rtl"] .navbar {
+        text-align: right;
+    }
+
+    [dir="rtl"] .nav-links {
+        flex-direction: column;
+        text-align: right;
+    }
+
+    [dir="rtl"] .welcome-section {
+        flex-direction: column;
+    }
+
+    [dir="rtl"] .contact-container {
+        flex-direction: column;
+    }
+}

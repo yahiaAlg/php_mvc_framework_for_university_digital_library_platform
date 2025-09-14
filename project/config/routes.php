@@ -6,6 +6,9 @@ return [
     '/home' => ['HomeController', 'index'],
     '/about' => ['HomeController', 'about'],
 
+    // Language switching
+    '/language/switch' => ['LanguageController', 'switch'],
+
     // Authentication routes
     '/login' => ['AuthController', 'login'],
     '/register' => ['AuthController', 'register'],

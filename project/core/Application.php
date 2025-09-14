@@ -5,6 +5,7 @@ class Application
     private Router $router;
     private Database $database;
     private Session $session;
+    private I18n $i18n;
     private array $config;
 
     public function __construct()
@@ -12,6 +13,7 @@ class Application
         $this->loadConfig();
         $this->initializeCore();
         $this->startSession();
+        $this->initializeI18n();
     }
 
     private function loadConfig(): void
@@ -35,6 +37,16 @@ class Application
         $this->session->start();
     }
 
+    private function initializeI18n(): void
+    {
+        require_once __DIR__ . '/I18n.php';
+        $this->i18n = I18n::getInstance();
+        $this->i18n->initializeFromSession($this->session);
+
+        // Set the session reference for future language changes
+        $this->i18n->setSession($this->session);
+    }
+
     public function run(): void
     {
         try {
@@ -47,7 +59,7 @@ class Application
     private function handleError(Exception $e): void
     {
         error_log($e->getMessage());
-        
+
         if ($e->getCode() === 404) {
             http_response_code(404);
             include __DIR__ . '/../views/errors/404.php';
@@ -62,7 +74,7 @@ class Application
         if ($key === null) {
             return $this->config;
         }
-        
+
         return $this->config[$key] ?? null;
     }
 
@@ -74,5 +86,10 @@ class Application
     public function getSession(): Session
     {
         return $this->session;
+    }
+
+    public function getI18n(): I18n
+    {
+        return $this->i18n;
     }
 }

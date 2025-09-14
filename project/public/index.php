@@ -8,14 +8,15 @@ ini_set('display_errors', 1);
 define('BASE_PATH', dirname(__DIR__));
 
 // Load core classes
-require_once BASE_PATH . '/core/Application.php';
-require_once BASE_PATH . '/core/Controller.php';
-require_once BASE_PATH . '/core/Model.php';
-require_once BASE_PATH . '/core/View.php';
-require_once BASE_PATH . '/core/Router.php';
 require_once BASE_PATH . '/core/Database.php';
 require_once BASE_PATH . '/core/Session.php';
+require_once BASE_PATH . '/core/Router.php';
+require_once BASE_PATH . '/core/View.php';
 require_once BASE_PATH . '/core/Validator.php';
+require_once BASE_PATH . '/core/I18n.php';
+require_once BASE_PATH . '/core/Controller.php';
+require_once BASE_PATH . '/core/Model.php';
+require_once BASE_PATH . '/core/Application.php';
 
 // Load models
 require_once BASE_PATH . '/models/User.php';

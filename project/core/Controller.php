@@ -6,6 +6,7 @@ abstract class Controller
     protected Session $session;
     protected Database $database;
     protected Validator $validator;
+    protected I18n $i18n;
 
     public function __construct()
     {
@@ -14,25 +15,19 @@ abstract class Controller
         $this->session = $app->getSession();
         $this->database = $app->getDatabase();
         $this->validator = new Validator();
+        $this->i18n = $app->getI18n();
     }
 
     protected function render(string $viewName, array $data = []): void
     {
-        // echo "DEBUG Controller::render() called with viewName: ";
-        // var_dump($viewName);
-        // echo "\n";
-
         $data['user'] = $this->getCurrentUser();
         $data['errors'] = $this->session->getFlash('errors') ?? [];
         $data['success'] = $this->session->getFlash('success') ?? '';
         $data['view'] = $this->view;
-
-        // echo "DEBUG About to call \$this->view->render() with parameters:\n";
-        // echo "First param (should be viewName): ";
-        // var_dump($viewName);
-        // echo "Second param (data array keys): ";
-        // var_dump(array_keys($data));
-        // echo "\n";
+        $data['i18n'] = $this->i18n;
+        $data['__'] = function ($key, $params = []) {
+            return $this->i18n->translate($key, $params);
+        };
 
         $this->view->render($viewName, $data);
     }
@@ -57,7 +52,7 @@ abstract class Controller
     protected function requireAuth(): void
     {
         if (!$this->getCurrentUser()) {
-            $this->session->setFlash('errors', ['Please log in to access this page.']);
+            $this->session->setFlash('errors', [__('auth.please_login')]);
             $this->redirect('/login');
         }
     }
