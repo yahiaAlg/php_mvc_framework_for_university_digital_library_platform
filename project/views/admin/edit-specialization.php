@@ -1,4 +1,4 @@
-<!-- Edit Specialization Template -->
+<!-- Edit Specialization Template with Internationalization -->
 <style>
     .edit-specialization-section {
         background-color: #414040;
@@ -143,8 +143,8 @@
 <div class="edit-specialization-section">
     <div class="edit-specialization-container">
         <div class="edit-specialization-header">
-            <h1 class="edit-specialization-title">Edit Specialization</h1>
-            <a href="/admin/specializations" class="back-btn">Back to Specializations</a>
+            <h1 class="edit-specialization-title"><?php echo __('admin.edit_specialization_title'); ?></h1>
+            <a href="/admin/specializations" class="back-btn"><?php echo __('admin.back_to_specializations'); ?></a>
         </div>
 
         <div class="form-container">
@@ -166,24 +166,24 @@
 
             <form method="POST">
                 <div class="form-group">
-                    <label class="form-label">Specialization Name</label>
+                    <label class="form-label"><?php echo __('admin.specialization_name'); ?></label>
                     <input type="text" name="name" class="form-input"
                         value="<?php echo $view->escape($specialization['name']); ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Faculty</label>
+                    <label class="form-label"><?php echo __('admin.faculty'); ?></label>
                     <input type="text" name="faculty" class="form-input"
                         value="<?php echo $view->escape($specialization['faculty']); ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Description</label>
+                    <label class="form-label"><?php echo __('admin.description'); ?></label>
                     <textarea name="description" class="form-textarea"
-                        placeholder="Brief description of the specialization..." required><?php echo $view->escape($specialization['description']); ?></textarea>
+                        placeholder="<?php echo __('admin.brief_description_placeholder'); ?>" required><?php echo $view->escape($specialization['description']); ?></textarea>
                 </div>
 
-                <button type="submit" class="save-btn">Update Specialization</button>
+                <button type="submit" class="save-btn"><?php echo __('admin.update_specialization'); ?></button>
             </form>
         </div>
     </div>

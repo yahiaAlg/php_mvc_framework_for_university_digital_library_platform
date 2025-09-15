@@ -10,10 +10,10 @@
         <form method="GET" action="/projects" style="display: flex; width: 100%; max-width: 800px;">
             <input type="text"
                 name="search"
-                placeholder="Search theses, projects, authors..."
+                placeholder="<?php echo __('listings.search_placeholder'); ?>"
                 value="<?php echo $view->escape($currentSearch ?? ''); ?>">
             <input type="hidden" name="specialization" value="<?php echo $view->escape($currentSpecialization ?? ''); ?>">
-            <button type="submit">Search</button>
+            <button type="submit"><?php echo __('listings.search_button'); ?></button>
         </form>
     </div>
 </div>
@@ -26,9 +26,9 @@
             <input type="hidden" name="search" value="<?php echo $view->escape($currentSearch ?? ''); ?>">
 
             <div class="filter-group">
-                <label for="year">Year</label>
+                <label for="year"><?php echo __('listings.year_filter'); ?></label>
                 <select class="sort-dropdown" id="year" name="year" onchange="document.getElementById('filterForm').submit();">
-                    <option value="">All Years</option>
+                    <option value=""><?php echo __('listings.all_years'); ?></option>
                     <?php for ($year = date('Y'); $year >= 2020; $year--): ?>
                         <option value="<?php echo $year; ?>" <?php echo (($_GET['year'] ?? '') == $year) ? 'selected' : ''; ?>>
                             <?php echo $year; ?>
@@ -38,9 +38,9 @@
             </div>
 
             <div class="filter-group">
-                <label for="specialization">Specialization</label>
+                <label for="specialization"><?php echo __('listings.specialization'); ?></label>
                 <select class="sort-dropdown" id="specialization" name="specialization" onchange="document.getElementById('filterForm').submit();">
-                    <option value="">All Specializations</option>
+                    <option value=""><?php echo __('listings.all_specializations'); ?></option>
                     <?php foreach ($specializations as $spec): ?>
                         <option value="<?php echo $spec['id']; ?>"
                             <?php echo ($currentSpecialization == $spec['id']) ? 'selected' : ''; ?>>
@@ -51,22 +51,22 @@
             </div>
 
             <div class="filter-group">
-                <label for="status">Status</label>
+                <label for="status"><?php echo __('listings.status'); ?></label>
                 <select class="sort-dropdown" id="status" name="status" onchange="document.getElementById('filterForm').submit();">
-                    <option value="">All Status</option>
-                    <option value="approved" <?php echo (($_GET['status'] ?? '') == 'approved') ? 'selected' : ''; ?>>Approved</option>
-                    <option value="pending" <?php echo (($_GET['status'] ?? '') == 'pending') ? 'selected' : ''; ?>>Pending</option>
+                    <option value=""><?php echo __('listings.all_status'); ?></option>
+                    <option value="approved" <?php echo (($_GET['status'] ?? '') == 'approved') ? 'selected' : ''; ?>><?php echo __('listings.approved'); ?></option>
+                    <option value="pending" <?php echo (($_GET['status'] ?? '') == 'pending') ? 'selected' : ''; ?>><?php echo __('listings.pending'); ?></option>
                 </select>
             </div>
 
             <!-- Sort option -->
             <div class="sort-container">
-                <label for="sort-options" class="sort-label">Sort by:</label>
+                <label for="sort-options" class="sort-label"><?php echo __('listings.sort_by'); ?></label>
                 <select class="sort-dropdown" id="sort-options" name="sort" onchange="document.getElementById('filterForm').submit();">
-                    <option value="created_at_desc" <?php echo (($_GET['sort'] ?? '') == 'created_at_desc') ? 'selected' : ''; ?>>Most Recent</option>
-                    <option value="title_asc" <?php echo (($_GET['sort'] ?? '') == 'title_asc') ? 'selected' : ''; ?>>Title (A-Z)</option>
-                    <option value="year_desc" <?php echo (($_GET['sort'] ?? '') == 'year_desc') ? 'selected' : ''; ?>>Year (Newest)</option>
-                    <option value="author_asc" <?php echo (($_GET['sort'] ?? '') == 'author_asc') ? 'selected' : ''; ?>>Author (A-Z)</option>
+                    <option value="created_at_desc" <?php echo (($_GET['sort'] ?? '') == 'created_at_desc') ? 'selected' : ''; ?>><?php echo __('listings.most_recent'); ?></option>
+                    <option value="title_asc" <?php echo (($_GET['sort'] ?? '') == 'title_asc') ? 'selected' : ''; ?>><?php echo __('listings.title_az'); ?></option>
+                    <option value="year_desc" <?php echo (($_GET['sort'] ?? '') == 'year_desc') ? 'selected' : ''; ?>><?php echo __('listings.year_newest'); ?></option>
+                    <option value="author_asc" <?php echo (($_GET['sort'] ?? '') == 'author_asc') ? 'selected' : ''; ?>><?php echo __('listings.author_az'); ?></option>
                 </select>
             </div>
         </form>
@@ -75,9 +75,9 @@
     <!-- Results Summary -->
     <?php if (!empty($projects['data'])): ?>
         <div style="padding: 0 20px; margin-bottom: 20px; color: #666;">
-            <p>Showing <?php echo count($projects['data']); ?> of <?php echo $projects['total']; ?> results
+            <p><?php echo __('listings.showing_results', ['count' => count($projects['data']), 'total' => $projects['total']]); ?>
                 <?php if ($currentSearch): ?>
-                    for "<?php echo $view->escape($currentSearch); ?>"
+                    <?php echo __('listings.search_for', ['search' => $view->escape($currentSearch)]); ?>
                 <?php endif; ?>
             </p>
         </div>
@@ -99,7 +99,7 @@
                             <span class="card-author"><?php echo $view->escape($project['author_name']); ?></span>
                             <span class="card-year"><?php echo $view->escape($project['year']); ?></span>
                             <span class="card-type">
-                                <?php echo ucfirst($view->escape($project['status'] ?? 'Project')); ?>
+                                <?php echo ucfirst($view->escape($project['status'] ?? __('listings.projects'))); ?>
                             </span>
                         </div>
                         <div class="card-desc">
@@ -113,7 +113,7 @@
                                 <?php echo $view->escape($project['specialization_name'] ?? 'University Digital Library'); ?>
                             </span>
                             <a href="/projects/<?php echo $project['id']; ?>">
-                                <button class="view-details-btn">View Details</button>
+                                <button class="view-details-btn"><?php echo __('listings.view_details'); ?></button>
                             </a>
                         </div>
                     </div>
@@ -122,10 +122,10 @@
         <?php else: ?>
             <!-- No Results -->
             <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: #666;">
-                <h3>No projects found</h3>
-                <p>Try adjusting your search criteria or browse all projects.</p>
+                <h3><?php echo __('listings.no_projects_found'); ?></h3>
+                <p><?php echo __('listings.try_adjusting'); ?></p>
                 <a href="/projects" style="color: #b52626; text-decoration: none; margin-top: 10px; display: inline-block;">
-                    View All Projects
+                    <?php echo __('listings.view_all_projects'); ?>
                 </a>
             </div>
         <?php endif; ?>

@@ -100,7 +100,7 @@ ALTER TABLE users ADD COLUMN preferred_language VARCHAR(5) DEFAULT 'en';
 ### In Controllers
 ```php
 // Set flash message with translation
-$this->session->setFlash('success', __('projects.upload_success'));
+$this->session->setFlash('success', __('listings.upload_success'));
 
 // Get current language
 $currentLang = $this->i18n->getCurrentLanguage();

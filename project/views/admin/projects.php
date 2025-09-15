@@ -1,4 +1,4 @@
-<!-- Admin Projects Template -->
+<!-- Admin Projects Template with Internationalization -->
 <style>
     .projects-section {
         background-color: #414040;
@@ -274,16 +274,16 @@
 <div class="projects-section">
     <div class="projects-container">
         <div class="projects-header">
-            <h1 class="projects-title">Manage Projects</h1>
+            <h1 class="projects-title"><?php echo __('admin.manage_projects_title'); ?></h1>
             <div class="header-controls">
                 <select class="status-filter" onchange="filterByStatus(this.value)">
-                    <option value="all" <?php echo $current_status === 'all' ? 'selected' : ''; ?>>All Projects</option>
-                    <option value="pending" <?php echo $current_status === 'pending' ? 'selected' : ''; ?>>Pending</option>
-                    <option value="approved" <?php echo $current_status === 'approved' ? 'selected' : ''; ?>>Approved</option>
-                    <option value="rejected" <?php echo $current_status === 'rejected' ? 'selected' : ''; ?>>Rejected</option>
+                    <option value="all" <?php echo $current_status === 'all' ? 'selected' : ''; ?>><?php echo __('admin.all_projects'); ?></option>
+                    <option value="pending" <?php echo $current_status === 'pending' ? 'selected' : ''; ?>><?php echo __('admin.pending'); ?></option>
+                    <option value="approved" <?php echo $current_status === 'approved' ? 'selected' : ''; ?>><?php echo __('admin.approved'); ?></option>
+                    <option value="rejected" <?php echo $current_status === 'rejected' ? 'selected' : ''; ?>><?php echo __('admin.rejected'); ?></option>
                 </select>
-                <a href="/admin/categories" class="category-btn">Categories📚</a>
-                <a href="/admin/dashboard" class="back-btn">Back to Dashboard</a>
+                <a href="/admin/categories" class="category-btn"><?php echo __('admin.categories'); ?>📚</a>
+                <a href="/admin/dashboard" class="back-btn"><?php echo __('admin.back_to_dashboard'); ?></a>
             </div>
         </div>
 
@@ -291,11 +291,11 @@
             <table class="projects-table">
                 <thead>
                     <tr>
-                        <th>Project</th>
-                        <th>Year</th>
-                        <th>Status</th>
-                        <th>Uploaded</th>
-                        <th>Actions</th>
+                        <th><?php echo __('admin.project'); ?></th>
+                        <th><?php echo __('admin.year'); ?></th>
+                        <th><?php echo __('admin.status'); ?></th>
+                        <th><?php echo __('admin.uploaded'); ?></th>
+                        <th><?php echo __('admin.actions'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -303,31 +303,31 @@
                         <tr>
                             <td>
                                 <div class="project-title"><?php echo $view->escape($project['title']); ?></div>
-                                <div class="project-author">by <?php echo $view->escape($project['author_name']); ?></div>
-                                <div class="project-specialization"><?php echo $view->escape($project['specialization_name'] ?? 'No Specialization'); ?></div>
+                                <div class="project-author"><?php echo __('admin.by'); ?> <?php echo $view->escape($project['author_name']); ?></div>
+                                <div class="project-specialization"><?php echo $view->escape($project['specialization_name'] ?? __('admin.no_specialization')); ?></div>
                             </td>
                             <td><?php echo $project['year']; ?></td>
                             <td>
                                 <span class="project-status status-<?php echo $project['status']; ?>">
-                                    <?php echo ucfirst($project['status']); ?>
+                                    <?php echo __('admin.' . $project['status']); ?>
                                 </span>
                             </td>
                             <td><?php echo date('M j, Y', strtotime($project['created_at'])); ?></td>
                             <td>
                                 <div class="project-actions">
-                                    <a href="/admin/projects/<?php echo $project['id']; ?>/edit" class="action-btn edit-btn">Edit</a>
+                                    <a href="/admin/projects/<?php echo $project['id']; ?>/edit" class="action-btn edit-btn"><?php echo __('admin.edit'); ?></a>
 
                                     <?php if ($project['status'] === 'pending'): ?>
-                                        <a href="/admin/projects/<?php echo $project['id']; ?>/approve" class="action-btn approve-btn">Approve</a>
-                                        <a href="/admin/projects/<?php echo $project['id']; ?>/reject" class="action-btn reject-btn">Reject</a>
+                                        <a href="/admin/projects/<?php echo $project['id']; ?>/approve" class="action-btn approve-btn"><?php echo __('admin.approve'); ?></a>
+                                        <a href="/admin/projects/<?php echo $project['id']; ?>/reject" class="action-btn reject-btn"><?php echo __('admin.reject'); ?></a>
                                     <?php elseif ($project['status'] === 'rejected'): ?>
-                                        <a href="/admin/projects/<?php echo $project['id']; ?>/approve" class="action-btn approve-btn">Approve</a>
+                                        <a href="/admin/projects/<?php echo $project['id']; ?>/approve" class="action-btn approve-btn"><?php echo __('admin.approve'); ?></a>
                                     <?php elseif ($project['status'] === 'approved'): ?>
-                                        <a href="/admin/projects/<?php echo $project['id']; ?>/reject" class="action-btn reject-btn">Reject</a>
+                                        <a href="/admin/projects/<?php echo $project['id']; ?>/reject" class="action-btn reject-btn"><?php echo __('admin.reject'); ?></a>
                                     <?php endif; ?>
 
                                     <a href="/admin/projects/<?php echo $project['id']; ?>/delete" class="action-btn delete-btn"
-                                        onclick="return confirm('Are you sure you want to delete this project?')">Delete</a>
+                                        onclick="return confirm('<?php echo __('admin.are_you_sure_delete_project'); ?>')"><?php echo __('admin.delete'); ?></a>
                                 </div>
                             </td>
                         </tr>
@@ -340,7 +340,7 @@
         <?php if ($projects['last_page'] > 1): ?>
             <div class="pagination">
                 <?php if ($projects['current_page'] > 1): ?>
-                    <a href="?page=<?php echo $projects['current_page'] - 1; ?>&status=<?php echo $current_status; ?>">&laquo; Previous</a>
+                    <a href="?page=<?php echo $projects['current_page'] - 1; ?>&status=<?php echo $current_status; ?>">&laquo; <?php echo __('admin.previous'); ?></a>
                 <?php endif; ?>
 
                 <?php for ($i = 1; $i <= $projects['last_page']; $i++): ?>
@@ -352,7 +352,7 @@
                 <?php endfor; ?>
 
                 <?php if ($projects['current_page'] < $projects['last_page']): ?>
-                    <a href="?page=<?php echo $projects['current_page'] + 1; ?>&status=<?php echo $current_status; ?>">Next &raquo;</a>
+                    <a href="?page=<?php echo $projects['current_page'] + 1; ?>&status=<?php echo $current_status; ?>"><?php echo __('admin.next'); ?> &raquo;</a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>

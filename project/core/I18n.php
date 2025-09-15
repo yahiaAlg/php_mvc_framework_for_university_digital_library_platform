@@ -6,6 +6,7 @@ class I18n
     private string $currentLanguage = 'en';
     private array $translations = [];
     private string $translationsPath;
+    private ?Session $session = null;
 
     private function __construct()
     {
@@ -21,7 +22,12 @@ class I18n
         return self::$instance;
     }
 
-    public function setLanguage(string $language): void
+    public function setSession(Session $session): void
+    {
+        $this->session = $session;
+    }
+
+    public function setLanguage(string $language, ?Session $session = null): void
     {
         $supportedLanguages = ['en', 'ar', 'fr'];
 
@@ -30,9 +36,9 @@ class I18n
             $this->loadTranslations();
 
             // Store in session if available
-            global $app;
-            if ($app !== null && $app->getSession() !== null) {
-                $app->getSession()->set('language', $language);
+            $sessionToUse = $session ?? $this->session;
+            if ($sessionToUse !== null) {
+                $sessionToUse->set('language', $language);
             }
         }
     }
@@ -102,10 +108,10 @@ class I18n
         return is_string($value) ? $value : null;
     }
 
-    public function initializeFromSession(): void
+    public function initializeFromSession(Session $session): void
     {
-        global $app;
-        $sessionLanguage = $app->getSession()->get('language');
+        $this->session = $session;
+        $sessionLanguage = $session->get('language');
 
         if ($sessionLanguage) {
             $this->setLanguage($sessionLanguage);

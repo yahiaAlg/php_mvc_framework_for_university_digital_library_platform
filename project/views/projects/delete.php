@@ -106,6 +106,21 @@
         color: #ddd;
     }
 
+    /* RTL Support */
+    .rtl .delete-container {
+        text-align: center;
+    }
+
+    .rtl .project-info {
+        text-align: right;
+        border-left: none;
+        border-right: 4px solid #dc3545;
+    }
+
+    .rtl .form-actions {
+        flex-direction: row-reverse;
+    }
+
     @media (max-width: 768px) {
         .delete-container {
             padding: 30px 20px;
@@ -120,31 +135,35 @@
             width: 100%;
             margin: 5px 0;
         }
+
+        .rtl .form-actions {
+            flex-direction: column;
+        }
     }
 </style>
 
 <div class="delete-section">
     <div class="delete-container">
         <div class="warning-icon">⚠️</div>
-        <h1 class="delete-title">Delete Project</h1>
+        <h1 class="delete-title"><?php echo __('project_management.delete_project'); ?></h1>
 
         <p class="delete-warning">
-            Are you sure you want to delete this project? This action cannot be undone and will permanently remove the project and its associated file.
+            <?php echo __('project_management.delete_warning'); ?>
         </p>
 
         <div class="project-info">
             <div class="project-title"><?php echo $view->escape($project['title']); ?></div>
             <div class="project-details">
-                <strong>Author:</strong> <?php echo $view->escape($project['author_name']); ?><br>
-                <strong>Year:</strong> <?php echo $view->escape($project['year']); ?><br>
-                <strong>Uploaded:</strong> <?php echo date('F j, Y', strtotime($project['created_at'])); ?>
+                <strong><?php echo __('project_management.author'); ?>:</strong> <?php echo $view->escape($project['author_name']); ?><br>
+                <strong><?php echo __('project_management.year'); ?>:</strong> <?php echo $view->escape($project['year']); ?><br>
+                <strong><?php echo __('project_management.uploaded'); ?>:</strong> <?php echo date('F j, Y', strtotime($project['created_at'])); ?>
             </div>
         </div>
 
         <form method="POST">
             <div class="form-actions">
-                <button type="submit" class="delete-btn">Yes, Delete Project</button>
-                <a href="/projects/dashboard" class="cancel-btn">Cancel</a>
+                <button type="submit" class="delete-btn"><?php echo __('project_management.yes_delete'); ?></button>
+                <a href="/projects/dashboard" class="cancel-btn"><?php echo __('project_management.cancel'); ?></a>
             </div>
         </form>
     </div>

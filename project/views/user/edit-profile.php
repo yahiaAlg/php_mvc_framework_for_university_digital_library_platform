@@ -159,32 +159,32 @@
 
 <div class="edit-profile-section">
     <div class="edit-profile-container">
-        <h1 class="edit-profile-title">Edit Profile</h1>
+        <h1 class="edit-profile-title"><?php echo __('profile.edit_profile'); ?></h1>
 
         <form method="POST">
             <div class="form-group">
-                <label class="form-label">Full Name</label>
+                <label class="form-label"><?php echo __('profile.full_name'); ?></label>
                 <input type="text" name="full_name" class="form-input"
                     value="<?php echo $view->escape($user['full_name']); ?>" required>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Username</label>
+                    <label class="form-label"><?php echo __('profile.username'); ?></label>
                     <input type="text" name="username" class="form-input"
                         value="<?php echo $view->escape($user['username']); ?>" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Email</label>
+                    <label class="form-label"><?php echo __('profile.email'); ?></label>
                     <input type="email" name="email" class="form-input"
                         value="<?php echo $view->escape($user['email']); ?>" required>
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Specialization</label>
+                <label class="form-label"><?php echo __('profile.specialization'); ?></label>
                 <select name="specialization_id" class="form-select" required>
-                    <option value="">Select Specialization</option>
+                    <option value=""><?php echo __('profile.select_specialization'); ?></option>
                     <?php foreach ($specializations as $spec): ?>
                         <option value="<?php echo $spec['id']; ?>"
                             <?php echo ($spec['id'] == $user['specialization_id']) ? 'selected' : ''; ?>>
@@ -195,19 +195,20 @@
             </div>
 
             <div class="password-section">
-                <h3>Change Password</h3>
+                <h3><?php echo __('profile.change_password'); ?></h3>
                 <div class="password-note">
-                    Leave blank to keep your current password
+                    <?php echo __('profile.password_note'); ?>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">New Password</label>
-                    <input type="password" name="password" class="form-input" placeholder="Enter new password">
+                    <label class="form-label"><?php echo __('profile.new_password'); ?></label>
+                    <input type="password" name="password" class="form-input"
+                        placeholder="<?php echo __('profile.enter_new_password'); ?>">
                 </div>
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="save-btn">Save Changes</button>
-                <a href="/profile" class="cancel-btn">Cancel</a>
+                <button type="submit" class="save-btn"><?php echo __('profile.save_changes'); ?></button>
+                <a href="/profile" class="cancel-btn"><?php echo __('common.cancel'); ?></a>
             </div>
         </form>
     </div>

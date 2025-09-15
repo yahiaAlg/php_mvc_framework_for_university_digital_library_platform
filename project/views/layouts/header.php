@@ -138,6 +138,7 @@ $isProjectDetail = preg_match('/^\/projects\/\d+$/', $currentPath);
 
 <body>
     <!-- Navigation -->
+
     <?php if ($useSimpleNavbar && (!$isProjectDetail)) : ?>
         <nav class="navbar">
             <a href="/">
@@ -150,7 +151,7 @@ $isProjectDetail = preg_match('/^\/projects\/\d+$/', $currentPath);
                 </div>
             </a>
 
-            <div class="d-flex align-items-center">
+            <div class="navbar-right">
                 <!-- Language Selector -->
                 <div class="language-selector dropdown">
                     <button class="current-language dropdown-toggle" type="button" data-bs-toggle="dropdown">

@@ -1,4 +1,4 @@
-<!-- Main content for manage users template -->
+<!-- Admin Users Template with Internationalization -->
 <style>
     .users-section {
         background-color: #414040;
@@ -229,20 +229,20 @@
 <div class="users-section">
     <div class="users-container">
         <div class="users-header">
-            <h1 class="users-title">Manage Users</h1>
-            <a href="/admin/dashboard" class="back-btn">Back to Dashboard</a>
+            <h1 class="users-title"><?php echo __('admin.manage_users_title'); ?></h1>
+            <a href="/admin/dashboard" class="back-btn"><?php echo __('admin.back_to_dashboard'); ?></a>
         </div>
 
         <div class="users-table-container">
             <table class="users-table">
                 <thead>
                     <tr>
-                        <th>User</th>
-                        <th>Username</th>
-                        <th>Role</th>
-                        <th>Specialization</th>
-                        <th>Joined</th>
-                        <th>Actions</th>
+                        <th><?php echo __('admin.user'); ?></th>
+                        <th><?php echo __('admin.username'); ?></th>
+                        <th><?php echo __('admin.role'); ?></th>
+                        <th><?php echo __('admin.specialization'); ?></th>
+                        <th><?php echo __('admin.joined'); ?></th>
+                        <th><?php echo __('admin.actions'); ?></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -262,16 +262,16 @@
                             <td><?php echo $view->escape($user['username']); ?></td>
                             <td>
                                 <span class="user-role role-<?php echo $user['role']; ?>">
-                                    <?php echo $view->escape(ucfirst($user['role'])); ?>
+                                    <?php echo __('admin.' . $user['role']); ?>
                                 </span>
                             </td>
-                            <td><?php echo $view->escape($user['specialization_name'] ?? 'Not specified'); ?></td>
+                            <td><?php echo $view->escape($user['specialization_name'] ?? __('admin.not_specified')); ?></td>
                             <td><?php echo date('M j, Y', strtotime($user['created_at'])); ?></td>
                             <td>
                                 <div class="user-actions">
-                                    <a href="/admin/users/<?php echo $user['id']; ?>/edit" class="action-btn edit-btn">Edit</a>
+                                    <a href="/admin/users/<?php echo $user['id']; ?>/edit" class="action-btn edit-btn"><?php echo __('admin.edit'); ?></a>
                                     <?php if ($user['role'] !== 'admin'): ?>
-                                        <a href="/admin/users/<?php echo $user['id']; ?>/delete" class="action-btn delete-btn">Delete</a>
+                                        <a href="/admin/users/<?php echo $user['id']; ?>/delete" class="action-btn delete-btn"><?php echo __('admin.delete'); ?></a>
                                     <?php endif; ?>
                                 </div>
                             </td>
@@ -285,7 +285,7 @@
         <?php if ($users['total_pages'] > 1): ?>
             <div class="pagination">
                 <?php if ($users['current_page'] > 1): ?>
-                    <a href="?page=<?php echo $users['current_page'] - 1; ?>">&laquo; Previous</a>
+                    <a href="?page=<?php echo $users['current_page'] - 1; ?>">&laquo; <?php echo __('admin.previous'); ?></a>
                 <?php endif; ?>
 
                 <?php for ($i = 1; $i <= $users['total_pages']; $i++): ?>
@@ -297,7 +297,7 @@
                 <?php endfor; ?>
 
                 <?php if ($users['current_page'] < $users['total_pages']): ?>
-                    <a href="?page=<?php echo $users['current_page'] + 1; ?>">Next &raquo;</a>
+                    <a href="?page=<?php echo $users['current_page'] + 1; ?>"><?php echo __('admin.next'); ?> &raquo;</a>
                 <?php endif; ?>
             </div>
         <?php endif; ?>

@@ -1,4 +1,4 @@
-<!-- Edit Category Template -->
+<!-- Admin Edit Category Template with Internationalization -->
 <style>
     .edit-category-section {
         background-color: #414040;
@@ -143,8 +143,8 @@
 <div class="edit-category-section">
     <div class="edit-category-container">
         <div class="edit-category-header">
-            <h1 class="edit-category-title">Edit Category</h1>
-            <a href="/admin/categories" class="back-btn">Back to Categories</a>
+            <h1 class="edit-category-title"><?php echo __('admin.edit_category_title'); ?></h1>
+            <a href="/admin/categories" class="back-btn"><?php echo __('admin.back_to_categories'); ?></a>
         </div>
 
         <div class="form-container">
@@ -166,18 +166,18 @@
 
             <form method="POST">
                 <div class="form-group">
-                    <label class="form-label">Category Name</label>
+                    <label class="form-label"><?php echo __('admin.category_name'); ?></label>
                     <input type="text" name="name" class="form-input"
                         value="<?php echo $view->escape($category['name']); ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Description</label>
+                    <label class="form-label"><?php echo __('admin.description'); ?></label>
                     <textarea name="description" class="form-textarea"
-                        placeholder="Brief description of the category..."><?php echo $view->escape($category['description'] ?? ''); ?></textarea>
+                        placeholder="<?php echo __('admin.brief_category_description_placeholder'); ?>"><?php echo $view->escape($category['description'] ?? ''); ?></textarea>
                 </div>
 
-                <button type="submit" class="save-btn">Update Category</button>
+                <button type="submit" class="save-btn"><?php echo __('admin.update_category'); ?></button>
             </form>
         </div>
     </div>

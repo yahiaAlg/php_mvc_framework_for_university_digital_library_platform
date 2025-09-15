@@ -213,16 +213,16 @@
     [dir="rtl"] .navbar {
         text-align: right;
     }
-
+    
     [dir="rtl"] .nav-links {
         flex-direction: column;
         text-align: right;
     }
-
+    
     [dir="rtl"] .welcome-section {
         flex-direction: column;
     }
-
+    
     [dir="rtl"] .contact-container {
         flex-direction: column;
     }

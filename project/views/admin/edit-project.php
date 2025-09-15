@@ -1,4 +1,4 @@
-<!-- Edit Project Template -->
+<!-- Admin Edit Project Template with Internationalization -->
 <style>
     .edit-project-section {
         background-color: #414040;
@@ -199,8 +199,8 @@
 <div class="edit-project-section">
     <div class="edit-project-container">
         <div class="edit-project-header">
-            <h1 class="edit-project-title">Edit Project</h1>
-            <a href="/admin/projects" class="back-btn">Back to Projects</a>
+            <h1 class="edit-project-title"><?php echo __('admin.edit_project_title'); ?></h1>
+            <a href="/admin/projects" class="back-btn"><?php echo __('admin.back_to_projects'); ?></a>
         </div>
 
         <div class="form-container">
@@ -222,25 +222,25 @@
 
             <form method="POST">
                 <div class="form-group">
-                    <label class="form-label">Project Title</label>
+                    <label class="form-label"><?php echo __('admin.project_title'); ?></label>
                     <input type="text" name="title" class="form-input"
                         value="<?php echo $view->escape($project['title']); ?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Description</label>
+                    <label class="form-label"><?php echo __('admin.description'); ?></label>
                     <textarea name="description" class="form-textarea" required><?php echo $view->escape($project['description']); ?></textarea>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Author Name</label>
+                        <label class="form-label"><?php echo __('admin.author_name'); ?></label>
                         <input type="text" name="author_name" class="form-input"
                             value="<?php echo $view->escape($project['author_name']); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Supervisor</label>
+                        <label class="form-label"><?php echo __('admin.supervisor'); ?></label>
                         <input type="text" name="supervisor" class="form-input"
                             value="<?php echo $view->escape($project['supervisor']); ?>" required>
                     </div>
@@ -248,9 +248,9 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Specialization</label>
+                        <label class="form-label"><?php echo __('admin.specialization'); ?></label>
                         <select name="specialization_id" class="form-select" required>
-                            <option value="">-- Select Specialization --</option>
+                            <option value=""><?php echo __('admin.select_specialization'); ?></option>
                             <?php foreach ($specializations as $spec): ?>
                                 <option value="<?php echo $spec['id']; ?>"
                                     <?php echo $project['specialization_id'] == $spec['id'] ? 'selected' : ''; ?>>
@@ -261,7 +261,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Year</label>
+                        <label class="form-label"><?php echo __('admin.year'); ?></label>
                         <select name="year" class="form-select" required>
                             <?php for ($y = date('Y'); $y >= 2000; $y--): ?>
                                 <option value="<?php echo $y; ?>"
@@ -275,24 +275,24 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Keywords</label>
+                        <label class="form-label"><?php echo __('admin.keywords'); ?></label>
                         <input type="text" name="keywords" class="form-input"
                             value="<?php echo $view->escape($project['keywords']); ?>"
-                            placeholder="Comma-separated keywords">
+                            placeholder="<?php echo __('admin.comma_separated_keywords'); ?>">
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Status</label>
+                        <label class="form-label"><?php echo __('admin.status'); ?></label>
                         <select name="status" class="form-select" required>
-                            <option value="pending" <?php echo $project['status'] === 'pending' ? 'selected' : ''; ?>>Pending</option>
-                            <option value="approved" <?php echo $project['status'] === 'approved' ? 'selected' : ''; ?>>Approved</option>
-                            <option value="rejected" <?php echo $project['status'] === 'rejected' ? 'selected' : ''; ?>>Rejected</option>
+                            <option value="pending" <?php echo $project['status'] === 'pending' ? 'selected' : ''; ?>><?php echo __('admin.pending'); ?></option>
+                            <option value="approved" <?php echo $project['status'] === 'approved' ? 'selected' : ''; ?>><?php echo __('admin.approved'); ?></option>
+                            <option value="rejected" <?php echo $project['status'] === 'rejected' ? 'selected' : ''; ?>><?php echo __('admin.rejected'); ?></option>
                         </select>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Categories</label>
+                    <label class="form-label"><?php echo __('admin.categories'); ?></label>
                     <div class="categories-container">
                         <?php foreach ($categories as $category): ?>
                             <div class="category-checkbox">
@@ -309,7 +309,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="save-btn">Update Project</button>
+                <button type="submit" class="save-btn"><?php echo __('admin.update_project'); ?></button>
             </form>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<!-- Categories Management Template -->
+<!-- Admin Categories Template with Internationalization -->
 <style>
     .categories-section {
         background-color: #414040;
@@ -253,14 +253,14 @@
 <div class="categories-section">
     <div class="categories-container">
         <div class="categories-header">
-            <h1 class="categories-title">Manage Categories</h1>
-            <a href="/admin/dashboard" class="back-btn">Back to Dashboard</a>
+            <h1 class="categories-title"><?php echo __('admin.manage_categories_title'); ?></h1>
+            <a href="/admin/dashboard" class="back-btn"><?php echo __('admin.back_to_dashboard'); ?></a>
         </div>
 
         <div class="content-grid">
             <!-- Add Category Form -->
             <div class="add-form-container">
-                <h2 class="section-title">Add New Category</h2>
+                <h2 class="section-title"><?php echo __('admin.add_new_category'); ?></h2>
 
                 <?php if (!empty($errors)): ?>
                     <div class="error-messages">
@@ -280,22 +280,22 @@
 
                 <form method="POST">
                     <div class="form-group">
-                        <label class="form-label">Category Name</label>
+                        <label class="form-label"><?php echo __('admin.category_name'); ?></label>
                         <input type="text" name="name" class="form-input" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Description</label>
-                        <textarea name="description" class="form-textarea" placeholder="Brief description of the category..."></textarea>
+                        <label class="form-label"><?php echo __('admin.description'); ?></label>
+                        <textarea name="description" class="form-textarea" placeholder="<?php echo __('admin.brief_category_description_placeholder'); ?>"></textarea>
                     </div>
 
-                    <button type="submit" class="add-btn">Add Category</button>
+                    <button type="submit" class="add-btn"><?php echo __('admin.add_category'); ?></button>
                 </form>
             </div>
 
             <!-- Categories List -->
             <div class="list-container">
-                <h2 class="section-title">Current Categories</h2>
+                <h2 class="section-title"><?php echo __('admin.current_categories'); ?></h2>
 
                 <div class="categories-list">
                     <?php if (!empty($categories)): ?>
@@ -304,8 +304,8 @@
                                 <div class="category-header">
                                     <h3 class="category-name"><?php echo $view->escape($category['name']); ?></h3>
                                     <div class="category-actions">
-                                        <a href="/admin/categories/<?php echo $category['id']; ?>/edit" class="action-btn edit-btn">Edit</a>
-                                        <a href="/admin/categories/<?php echo $category['id']; ?>/delete" class="action-btn delete-btn" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                                        <a href="/admin/categories/<?php echo $category['id']; ?>/edit" class="action-btn edit-btn"><?php echo __('admin.edit'); ?></a>
+                                        <a href="/admin/categories/<?php echo $category['id']; ?>/delete" class="action-btn delete-btn" onclick="return confirm('<?php echo __('admin.are_you_sure_delete_category'); ?>')"><?php echo __('admin.delete'); ?></a>
                                     </div>
                                 </div>
                                 <?php if (!empty($category['description'])): ?>
@@ -315,7 +315,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="empty-state">
-                            <p>No categories found. Add your first category using the form.</p>
+                            <p><?php echo __('admin.no_categories_found'); ?></p>
                         </div>
                     <?php endif; ?>
                 </div>

@@ -15,20 +15,20 @@
             <div class="document-meta">
                 <div class="meta-item">
                     <i class="bi bi-person"></i>
-                    <span><strong>Author:</strong> <?php echo $view->escape($project['author_name']); ?></span>
+                    <span><strong><?php echo __('detail.author_name'); ?>:</strong> <?php echo $view->escape($project['author_name']); ?></span>
                 </div>
                 <div class="meta-item">
                     <i class="bi bi-calendar"></i>
-                    <span><strong>Year:</strong> <?php echo $view->escape($project['year']); ?></span>
+                    <span><strong><?php echo __('detail.year'); ?>:</strong> <?php echo $view->escape($project['year']); ?></span>
                 </div>
                 <div class="meta-item">
                     <i class="bi bi-mortarboard"></i>
-                    <span><strong>Type:</strong> <?php echo ucfirst($view->escape($project['status'] ?? 'Project')); ?></span>
+                    <span><strong><?php echo __('common.type'); ?>:</strong> <?php echo ucfirst($view->escape($project['status'] ?? 'Project')); ?></span>
                 </div>
                 <?php if (isset($project['supervisor'])): ?>
                     <div class="meta-item">
                         <i class="bi bi-person-check"></i>
-                        <span><strong>Supervisor:</strong> <?php echo $view->escape($project['supervisor']); ?></span>
+                        <span><strong><?php echo __('detail.supervisor'); ?>:</strong> <?php echo $view->escape($project['supervisor']); ?></span>
                     </div>
                 <?php endif; ?>
             </div>
@@ -38,8 +38,8 @@
                     <div class="main-preview">
                         <div class="main-preview-content">
                             <i class="bi bi-file-earmark-text" style="font-size: 48px; color: #ccc;"></i>
-                            <p>Document Preview</p>
-                            <small>Click download to view full document</small>
+                            <p><?php echo __('detail.document_preview'); ?></p>
+                            <small><?php echo __('detail.click_download'); ?></small>
                         </div>
                     </div>
                 <?php else: ?>
@@ -53,7 +53,7 @@
                     <div class="secondary-preview">
                         <?php
                         $fileExt = pathinfo($project['file_path'], PATHINFO_EXTENSION);
-                        echo strtoupper($fileExt) . ' File';
+                        echo strtoupper($fileExt) . __('common.file');
                         ?>
                     </div>
                     <div class="secondary-preview">
@@ -61,12 +61,12 @@
                         if (isset($project_size) && !empty($project_size)) {
                             echo number_format($project_size, 2) . ' MB';
                         } else {
-                            echo 'File Size';
+                            echo __('detail.file_size');
                         }
                         ?>
                     </div>
                     <div class="secondary-preview">
-                        Created: <?php echo date('M Y', strtotime($project['created_at'])); ?>
+                        <?php echo __('detail.created_at'); ?>: <?php echo date('M Y', strtotime($project['created_at'])); ?>
                     </div>
                 </div>
             </div>
@@ -74,13 +74,13 @@
 
         <!-- Description Section -->
         <div class="description-section">
-            <h2 class="section-title">Abstract</h2>
+            <h2 class="section-title"><?php echo __('detail.abstract'); ?></h2>
             <div class="description-text">
                 <?php echo nl2br($view->escape($project['description'])); ?>
             </div>
 
             <?php if (!empty($project['keywords'])): ?>
-                <h3 style="margin-top: 25px; margin-bottom: 15px; color: #333;">Keywords</h3>
+                <h3 style="margin-top: 25px; margin-bottom: 15px; color: #333;"><?php echo __('detail.keywords'); ?></h3>
                 <div class="keywords">
                     <?php
                     $keywords = explode(',', $project['keywords']);
@@ -99,18 +99,18 @@
 
         <!-- Metadata Section -->
         <div class="metadata-section">
-            <h2 class="section-title">Document Information</h2>
+            <h2 class="section-title"><?php echo __('detail.document_information'); ?></h2>
             <div class="metadata-grid">
                 <div class="metadata-item">
                     <i class="bi bi-building" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                    <div class="metadata-label">Institution</div>
+                    <div class="metadata-label"><?php echo __('detail.institution'); ?></div>
                     <div class="metadata-value">University Digital Library</div>
                 </div>
 
                 <?php if (isset($project['specialization_name'])): ?>
                     <div class="metadata-item">
                         <i class="bi bi-bookmark" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                        <div class="metadata-label">Specialization</div>
+                        <div class="metadata-label"><?php echo __('detail.specialization'); ?></div>
                         <div class="metadata-value"><?php echo $view->escape($project['specialization_name']); ?></div>
                     </div>
                 <?php endif; ?>
@@ -118,26 +118,26 @@
                 <?php if (isset($project['supervisor'])): ?>
                     <div class="metadata-item">
                         <i class="bi bi-person-check" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                        <div class="metadata-label">Supervisor</div>
+                        <div class="metadata-label"><?php echo __('detail.supervisor'); ?></div>
                         <div class="metadata-value"><?php echo $view->escape($project['supervisor']); ?></div>
                     </div>
                 <?php endif; ?>
 
                 <div class="metadata-item">
                     <i class="bi bi-calendar-event" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                    <div class="metadata-label">Publication Year</div>
+                    <div class="metadata-label"><?php echo __('detail.publication_year'); ?></div>
                     <div class="metadata-value"><?php echo $view->escape($project['year']); ?></div>
                 </div>
 
                 <div class="metadata-item">
                     <i class="bi bi-file-earmark" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                    <div class="metadata-label">Format</div>
+                    <div class="metadata-label"><?php echo __('detail.format'); ?></div>
                     <div class="metadata-value"><?php echo strtoupper(pathinfo($project['file_path'], PATHINFO_EXTENSION)); ?></div>
                 </div>
 
                 <div class="metadata-item">
                     <i class="bi bi-hdd" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                    <div class="metadata-label">File Size</div>
+                    <div class="metadata-label"><?php echo __('detail.file_size'); ?></div>
                     <div class="metadata-value">
                         <?php
                         if (isset($project_size) && !empty($project_size)) {
@@ -151,13 +151,13 @@
 
                 <div class="metadata-item">
                     <i class="bi bi-clock" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                    <div class="metadata-label">Uploaded</div>
+                    <div class="metadata-label"><?php echo __('detail.uploaded'); ?></div>
                     <div class="metadata-value"><?php echo date('M d, Y', strtotime($project['created_at'])); ?></div>
                 </div>
 
                 <div class="metadata-item">
                     <i class="bi bi-check-circle" style="color: #b52626; font-size: 20px; margin-bottom: 8px;"></i>
-                    <div class="metadata-label">Status</div>
+                    <div class="metadata-label"><?php echo __('detail.status'); ?></div>
                     <div class="metadata-value">
                         <span class="badge <?php echo $project['status'] === 'approved' ? 'bg-success' : 'bg-warning'; ?>">
                             <?php echo ucfirst($view->escape($project['status'])); ?>
@@ -169,33 +169,33 @@
 
         <!-- Comments Section -->
         <div class="comments-reviews-section">
-            <h2 class="section-title">Comments & Discussion</h2>
+            <h2 class="section-title"><?php echo __('detail.comments_discussion'); ?></h2>
 
             <?php if ($user): ?>
                 <div class="add-comment" style="margin-bottom: 30px;">
                     <form method="POST" action="/projects/<?php echo $project['id']; ?>/comment">
-                        <textarea class="comment-input" name="comment" placeholder="Share your thoughts about this project..." required></textarea>
-                        <button type="submit" class="submit-comment">Post Comment</button>
+                        <textarea class="comment-input" name="comment" placeholder="<?php echo __('detail.share_thoughts'); ?>" required></textarea>
+                        <button type="submit" class="submit-comment"><?php echo __('detail.post_comment'); ?></button>
                     </form>
                 </div>
             <?php else: ?>
                 <div style="text-align: center; margin: 20px 0; padding: 20px; background: #f9f9f9; border-radius: 8px;">
-                    <p style="color: #666; margin-bottom: 10px;">Join the discussion</p>
+                    <p style="color: #666; margin-bottom: 10px;"><?php echo __('detail.join_discussion'); ?></p>
                     <a href="/login" style="color: #b52626; text-decoration: none; font-weight: 500;">
-                        Login to post comments
+                        <?php echo __('detail.login_to_comment'); ?>
                     </a>
                 </div>
             <?php endif; ?>
 
-            <!-- Sample Comments (you can replace with actual comment system) -->
+            <!-- Sample Comments -->
             <div class="comments-list">
                 <div class="comment">
-                    <div class="comment-author">Academic Community</div>
-                    <div class="comment-text">This project demonstrates excellent research methodology and contributes valuable insights to the field.</div>
+                    <div class="comment-author"><?php echo __('detail.academic_community'); ?></div>
+                    <div class="comment-text"><?php echo __('detail.sample_comment_1'); ?></div>
                 </div>
                 <div class="comment">
-                    <div class="comment-author">Research Team</div>
-                    <div class="comment-text">Well-structured document with clear objectives and comprehensive analysis. Great resource for fellow researchers.</div>
+                    <div class="comment-author"><?php echo __('detail.research_team'); ?></div>
+                    <div class="comment-text"><?php echo __('detail.sample_comment_2'); ?></div>
                 </div>
             </div>
         </div>
@@ -205,40 +205,39 @@
     <div class="sidebar">
         <!-- Download Section -->
         <div class="sidebar-section download-section">
-            <div class="sidebar-header">Download Options</div>
+            <div class="sidebar-header"><?php echo __('detail.download_options'); ?></div>
             <div class="sidebar-content">
                 <?php if ($project['status'] === 'approved' || ($user && $user['id'] == $project['user_id'])): ?>
                     <a href="<?= $view->escape(str_replace("public", "", $project['file_path'])) ?>" class="download-btn">
                         <i class="bi bi-download"></i>
-                        Download <?php echo strtoupper(pathinfo($project['file_path'], PATHINFO_EXTENSION)); ?>
+                        <?php echo __('detail.download_file', ['format' => strtoupper(pathinfo($project['file_path'], PATHINFO_EXTENSION))]); ?>
                     </a>
                 <?php else: ?>
                     <button class="download-btn" style="background: #ccc; cursor: not-allowed;" disabled>
                         <i class="bi bi-lock"></i>
-                        Pending Approval
+                        <?php echo __('detail.pending_approval'); ?>
                     </button>
                 <?php endif; ?>
 
                 <?php if ($user): ?>
                     <button class="download-btn" style="background: #555;" onclick="saveToLibrary(<?php echo $project['id']; ?>)">
                         <i class="bi bi-bookmark"></i>
-                        Save to Library
+                        <?php echo __('detail.save_to_library'); ?>
                     </button>
                 <?php endif; ?>
 
                 <div class="download-info">
                     <p>
                         <?php if ($project['status'] === 'approved'): ?>
-                            Free download • No registration required
+                            <?php echo __('detail.free_download'); ?>
                         <?php else: ?>
-                            Awaiting approval for public access
+                            <?php echo __('detail.awaiting_approval'); ?>
                         <?php endif; ?>
                     </p>
-                    <p>Uploaded: <?php echo date('M Y', strtotime($project['created_at'])); ?></p>
+                    <p><?php echo __('detail.uploaded'); ?>: <?php echo date('M Y', strtotime($project['created_at'])); ?></p>
 
                     <?php if (isset($project_size) && !empty($project_size)): ?>
-
-                        <p>File size: <?php echo number_format($project_size, 2); ?> MB</p>
+                        <p><?php echo __('detail.file_size'); ?>: <?php echo number_format($project_size, 2); ?> MB</p>
                     <?php endif; ?>
                 </div>
             </div>
@@ -246,18 +245,18 @@
 
         <!-- Author Info -->
         <div class="sidebar-section">
-            <div class="sidebar-header">Author Information</div>
+            <div class="sidebar-header"><?php echo __('detail.author_information'); ?></div>
             <div class="sidebar-content">
                 <div style="text-align: center; padding: 10px 0;">
                     <i class="bi bi-person-circle" style="font-size: 48px; color: #b52626; margin-bottom: 10px;"></i>
                     <h4 style="margin: 0; color: #333;"><?php echo $view->escape($project['author_name']); ?></h4>
                     <?php if (isset($project['user_name'])): ?>
                         <p style="color: #666; font-size: 14px; margin: 5px 0;">
-                            Uploaded by: <?php echo $view->escape($project['user_name']); ?>
+                            <?php echo __('detail.uploaded_by', ['user' => $view->escape($project['user_name'])]); ?>
                         </p>
                     <?php endif; ?>
                     <p style="color: #666; font-size: 14px; margin: 5px 0;">
-                        Year: <?php echo $view->escape($project['year']); ?>
+                        <?php echo __('detail.year'); ?>: <?php echo $view->escape($project['year']); ?>
                     </p>
                 </div>
             </div>
@@ -265,7 +264,7 @@
 
         <!-- Related Documents -->
         <div class="sidebar-section">
-            <div class="sidebar-header">Related Documents</div>
+            <div class="sidebar-header"><?php echo __('detail.related_documents'); ?></div>
             <div class="sidebar-content">
                 <?php if (isset($relatedProjects) && !empty($relatedProjects)): ?>
                     <?php foreach ($relatedProjects as $related): ?>
@@ -290,9 +289,9 @@
                 <?php else: ?>
                     <div style="text-align: center; color: #666; padding: 20px 0;">
                         <i class="bi bi-search" style="font-size: 24px; margin-bottom: 10px; display: block;"></i>
-                        <p style="margin: 0; font-size: 14px;">No related documents found</p>
+                        <p style="margin: 0; font-size: 14px;"><?php echo __('detail.no_related_found'); ?></p>
                         <a href="/projects" style="color: #b52626; text-decoration: none; font-size: 14px;">
-                            Browse all projects
+                            <?php echo __('detail.browse_all_projects'); ?>
                         </a>
                     </div>
                 <?php endif; ?>

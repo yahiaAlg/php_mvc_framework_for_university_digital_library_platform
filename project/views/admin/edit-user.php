@@ -1,4 +1,4 @@
-<!-- Edit User Template -->
+<!-- Admin Edit User Template with Internationalization -->
 <style>
     .edit-user-section {
         background-color: #414040;
@@ -155,8 +155,8 @@
 <div class="edit-user-section">
     <div class="edit-user-container">
         <div class="edit-user-header">
-            <h1 class="edit-user-title">Edit User</h1>
-            <a href="/admin/users" class="back-btn">Back to Users</a>
+            <h1 class="edit-user-title"><?php echo __('admin.edit_user_title'); ?></h1>
+            <a href="/admin/users" class="back-btn"><?php echo __('admin.back_to_users'); ?></a>
         </div>
 
         <div class="form-container">
@@ -179,37 +179,37 @@
             <form method="POST">
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Username</label>
+                        <label class="form-label"><?php echo __('admin.username'); ?></label>
                         <input type="text" name="username" class="form-input"
                             value="<?php echo $view->escape($userSelected['username']); ?>" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Email</label>
+                        <label class="form-label"><?php echo __('admin.email'); ?></label>
                         <input type="email" name="email" class="form-input"
                             value="<?php echo $view->escape($userSelected['email']); ?>" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Full Name</label>
+                    <label class="form-label"><?php echo __('admin.full_name'); ?></label>
                     <input type="text" name="full_name" class="form-input"
                         value="<?php echo $view->escape($userSelected['full_name']); ?>" required>
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Role</label>
+                        <label class="form-label"><?php echo __('admin.role'); ?></label>
                         <select name="role" class="form-select" required>
-                            <option value="student" <?php echo $userSelected['role'] === 'student' ? 'selected' : ''; ?>>Student</option>
-                            <option value="admin" <?php echo $userSelected['role'] === 'admin' ? 'selected' : ''; ?>>Admin</option>
+                            <option value="student" <?php echo $userSelected['role'] === 'student' ? 'selected' : ''; ?>><?php echo __('admin.student'); ?></option>
+                            <option value="admin" <?php echo $userSelected['role'] === 'admin' ? 'selected' : ''; ?>><?php echo __('admin.admin'); ?></option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Specialization</label>
+                        <label class="form-label"><?php echo __('admin.specialization'); ?></label>
                         <select name="specialization_id" class="form-select">
-                            <option value="">-- Select Specialization --</option>
+                            <option value=""><?php echo __('admin.select_specialization'); ?></option>
                             <?php foreach ($specializations as $spec): ?>
                                 <option value="<?php echo $spec['id']; ?>"
                                     <?php echo $userSelected['specialization_id'] == $spec['id'] ? 'selected' : ''; ?>>
@@ -222,18 +222,18 @@
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">New Password</label>
+                        <label class="form-label"><?php echo __('admin.new_password'); ?></label>
                         <input type="password" name="password" class="form-input">
-                        <div class="password-note">Leave blank to keep current password</div>
+                        <div class="password-note"><?php echo __('admin.password_blank_note'); ?></div>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Confirm New Password</label>
+                        <label class="form-label"><?php echo __('admin.confirm_new_password'); ?></label>
                         <input type="password" name="password_confirmation" class="form-input">
                     </div>
                 </div>
 
-                <button type="submit" class="save-btn">Update User</button>
+                <button type="submit" class="save-btn"><?php echo __('admin.update_user'); ?></button>
             </form>
         </div>
     </div>

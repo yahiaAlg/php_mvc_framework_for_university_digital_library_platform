@@ -148,44 +148,44 @@
             <div class="profile-avatar">
                 <i class="bi bi-person-circle"></i>
             </div>
-            <h1 class="profile-title">My Profile</h1>
+            <h1 class="profile-title"><?php echo __('profile.my_profile'); ?></h1>
         </div>
 
         <div class="profile-info">
             <div class="info-group">
-                <div class="info-label">Full Name</div>
+                <div class="info-label"><?php echo __('profile.full_name'); ?></div>
                 <div class="info-value"><?php echo $view->escape($user['full_name']); ?></div>
             </div>
 
             <div class="info-group">
-                <div class="info-label">Username</div>
+                <div class="info-label"><?php echo __('profile.username'); ?></div>
                 <div class="info-value"><?php echo $view->escape($user['username']); ?></div>
             </div>
 
             <div class="info-group">
-                <div class="info-label">Email</div>
+                <div class="info-label"><?php echo __('profile.email'); ?></div>
                 <div class="info-value"><?php echo $view->escape($user['email']); ?></div>
             </div>
 
             <div class="info-group">
-                <div class="info-label">Specialization</div>
-                <div class="info-value"><?php echo $view->escape($specialization['name'] ?? 'Not specified'); ?></div>
+                <div class="info-label"><?php echo __('profile.specialization'); ?></div>
+                <div class="info-value"><?php echo $view->escape($specialization['name'] ?? __('profile.not_specified')); ?></div>
             </div>
 
             <div class="info-group">
-                <div class="info-label">Role</div>
+                <div class="info-label"><?php echo __('profile.role'); ?></div>
                 <div class="info-value"><?php echo $view->escape(ucfirst($user['role'])); ?></div>
             </div>
 
             <div class="info-group">
-                <div class="info-label">Member Since</div>
+                <div class="info-label"><?php echo __('profile.member_since'); ?></div>
                 <div class="info-value"><?php echo date('F j, Y', strtotime($user['created_at'])); ?></div>
             </div>
         </div>
 
         <div class="profile-actions">
-            <a href="/profile/edit" class="edit-btn">Edit Profile</a>
-            <a href="/projects/dashboard" class="dashboard-btn">My Projects</a>
+            <a href="/profile/edit" class="edit-btn"><?php echo __('profile.edit_profile'); ?></a>
+            <a href="/projects/dashboard" class="dashboard-btn"><?php echo __('profile.my_projects'); ?></a>
         </div>
     </div>
 </div>

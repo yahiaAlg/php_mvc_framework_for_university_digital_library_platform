@@ -1,4 +1,4 @@
-<!-- Main content for manage specializations template -->
+<!-- Admin Specializations Template with Internationalization -->
 <style>
     .specializations-section {
         background-color: #414040;
@@ -241,38 +241,38 @@
 <div class="specializations-section">
     <div class="specializations-container">
         <div class="specializations-header">
-            <h1 class="specializations-title">Manage Specializations</h1>
-            <a href="/admin/dashboard" class="back-btn">Back to Dashboard</a>
+            <h1 class="specializations-title"><?php echo __('admin.manage_specializations_title'); ?></h1>
+            <a href="/admin/dashboard" class="back-btn"><?php echo __('admin.back_to_dashboard'); ?></a>
         </div>
 
         <div class="content-grid">
             <!-- Add Specialization Form -->
             <div class="add-form-container">
-                <h2 class="section-title">Add New Specialization</h2>
+                <h2 class="section-title"><?php echo __('admin.add_new_specialization'); ?></h2>
 
                 <form method="POST">
                     <div class="form-group">
-                        <label class="form-label">Specialization Name</label>
+                        <label class="form-label"><?php echo __('admin.specialization_name'); ?></label>
                         <input type="text" name="name" class="form-input" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Faculty</label>
+                        <label class="form-label"><?php echo __('admin.faculty'); ?></label>
                         <input type="text" name="faculty" class="form-input" required>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-label">Description</label>
-                        <textarea name="description" class="form-textarea" placeholder="Brief description of the specialization..." required></textarea>
+                        <label class="form-label"><?php echo __('admin.description'); ?></label>
+                        <textarea name="description" class="form-textarea" placeholder="<?php echo __('admin.brief_description_placeholder'); ?>" required></textarea>
                     </div>
 
-                    <button type="submit" class="add-btn">Add Specialization</button>
+                    <button type="submit" class="add-btn"><?php echo __('admin.add_specialization'); ?></button>
                 </form>
             </div>
 
             <!-- Specializations List -->
             <div class="list-container">
-                <h2 class="section-title">Current Specializations</h2>
+                <h2 class="section-title"><?php echo __('admin.current_specializations'); ?></h2>
 
                 <div class="specializations-list">
                     <?php if (!empty($specializations)): ?>
@@ -281,8 +281,8 @@
                                 <div class="spec-header">
                                     <h3 class="spec-name"><?php echo $view->escape($spec['name']); ?></h3>
                                     <div class="spec-actions">
-                                        <a href="/admin/specializations/<?php echo $spec['id']; ?>/edit" class="action-btn edit-btn">Edit</a>
-                                        <a href="/admin/specializations/<?php echo $spec['id']; ?>/delete" class="action-btn delete-btn">Delete</a>
+                                        <a href="/admin/specializations/<?php echo $spec['id']; ?>/edit" class="action-btn edit-btn"><?php echo __('admin.edit'); ?></a>
+                                        <a href="/admin/specializations/<?php echo $spec['id']; ?>/delete" class="action-btn delete-btn"><?php echo __('admin.delete'); ?></a>
                                     </div>
                                 </div>
                                 <div class="spec-faculty"><?php echo $view->escape($spec['faculty']); ?></div>
@@ -291,7 +291,7 @@
                         <?php endforeach; ?>
                     <?php else: ?>
                         <div class="empty-state">
-                            <p>No specializations found. Add your first specialization using the form.</p>
+                            <p><?php echo __('admin.no_specializations_found'); ?></p>
                         </div>
                     <?php endif; ?>
                 </div>

@@ -1,11 +1,11 @@
--- Digital Library Database Schema
+-- Digital Library Database Schema with Multilingual Support
 -- Created for University Digital Library Platform
 -- Create database
 CREATE DATABASE IF NOT EXISTS digital_library;
 
 USE digital_library;
 
--- Users table
+-- Users table (unchanged - user data doesn't need translation)
 CREATE TABLE
     users (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -15,6 +15,7 @@ CREATE TABLE
         full_name VARCHAR(100) NOT NULL,
         specialization_id INT,
         role ENUM ('student', 'admin') DEFAULT 'student',
+        preferred_language VARCHAR(5) DEFAULT 'en',
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         INDEX idx_email (email),
@@ -22,18 +23,23 @@ CREATE TABLE
         INDEX idx_specialization (specialization_id)
     );
 
--- Specializations table
+-- Specializations table with language support
 CREATE TABLE
     specializations (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(100) NOT NULL,
         faculty VARCHAR(100) NOT NULL,
         description TEXT,
+        lang VARCHAR(5) NOT NULL DEFAULT 'en',
+        original_id INT NULL, -- References the original record for translations
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        INDEX idx_faculty (faculty)
+        INDEX idx_faculty (faculty),
+        INDEX idx_lang (lang),
+        INDEX idx_original (original_id),
+        UNIQUE KEY unique_name_lang (name, lang)
     );
 
--- Projects table
+-- Projects table with language support
 CREATE TABLE
     projects (
         id INT AUTO_INCREMENT PRIMARY KEY,
@@ -48,27 +54,36 @@ CREATE TABLE
         year YEAR NOT NULL,
         keywords TEXT,
         status ENUM ('pending', 'approved', 'rejected') DEFAULT 'pending',
+        lang VARCHAR(5) NOT NULL DEFAULT 'en',
+        original_id INT NULL, -- References the original record for translations
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
         INDEX idx_specialization (specialization_id),
         INDEX idx_user (user_id),
         INDEX idx_status (status),
         INDEX idx_year (year),
+        INDEX idx_lang (lang),
+        INDEX idx_original (original_id),
         FULLTEXT idx_search (title, description, keywords, author_name),
         FOREIGN KEY (specialization_id) REFERENCES specializations (id) ON DELETE CASCADE,
         FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE
     );
 
--- Categories table
+-- Categories table with language support
 CREATE TABLE
     categories (
         id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(100) NOT NULL UNIQUE,
+        name VARCHAR(100) NOT NULL,
         description TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        lang VARCHAR(5) NOT NULL DEFAULT 'en',
+        original_id INT NULL, -- References the original record for translations
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        INDEX idx_lang (lang),
+        INDEX idx_original (original_id),
+        UNIQUE KEY unique_name_lang (name, lang)
     );
 
--- Project categories junction table (many-to-many)
+-- Project categories junction table (unchanged)
 CREATE TABLE
     project_categories (
         project_id INT NOT NULL,

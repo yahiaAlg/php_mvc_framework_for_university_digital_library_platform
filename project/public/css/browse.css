@@ -17,86 +17,10 @@ body {
   padding-top: 170px;
 }
 
-/* Header or NavBar */
-
-.navbar {
-  position: relative;
-  top: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0 20px;
-  background-color: #414040;
-  color: white;
-}
-
-.navbar a {
-  text-decoration: none;
-}
-
-.logo-img {
-  width: 80px;
-  height: 80px;
-}
-
-.logo-icon {
-  width: 50px;
-  height: 50px;
-  background-color: #444;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #e74c3c;
-  font-size: 24px;
-}
-
-.logo-text {
-  display: flex;
-  flex-direction: column;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #ddd;
-  text-align: left;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.logo-title {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.logo-subtitle {
-  font-size: 18px;
-  letter-spacing: 1.5px;
-}
-
-.sign-in-link {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #b52626;
-  color: #ddd;
-  padding: 10px 20px;
-  border-radius: 25px;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.sign-in-link:hover {
-  background-color: #8d1d1d;
-}
+/* Remove conflicting navbar styles - let header.php handle navbar */
+/* The navbar styles are now handled by simple-navbar.css or navbar.css */
 
 /* Search Bar */
-
 .search-filters {
   display: flex;
   justify-content: center;
@@ -105,10 +29,6 @@ body {
 }
 
 .search-bar {
-  /* display: flex;
-      gap: 0; */
-  /* Remove gap to make them stick together */
-  /* ********************* */
   display: flex;
   width: 100%;
   max-width: 800px;
@@ -119,9 +39,7 @@ body {
   padding: 10px;
   border: 1px solid #ddd;
   border-right: none;
-  /* Remove right border to blend with the button */
   border-radius: 4px 0 0 4px;
-  /* Only round the left corners */
   font-size: 16px;
 }
 
@@ -131,7 +49,6 @@ body {
   color: #ddd;
   border: none;
   border-radius: 0 4px 4px 0;
-  /* Round only the right corners */
   cursor: pointer;
   font-size: 18px;
 }
@@ -140,8 +57,18 @@ body {
   background-color: #8d1d1d;
 }
 
-/* Main Content Section */
+/* RTL Search Bar */
+[dir="rtl"] .search-bar input {
+  border-right: 1px solid #ddd;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+}
 
+[dir="rtl"] .search-bar button {
+  border-radius: 4px 0 0 4px;
+}
+
+/* Main Content Section */
 .main-section {
   background-color: #eee;
   padding: 20px;
@@ -153,7 +80,6 @@ body {
   justify-content: left;
   align-items: center;
   gap: 15px;
-  /* flex-wrap: wrap; */
   margin-bottom: 20px;
   padding: 0 20px;
 }
@@ -177,14 +103,12 @@ body {
   font-size: 14px;
 }
 
-/* Sort option  */
-
+/* Sort option */
 .sort-container {
   display: flex;
-  /* flex-direction: column; */
   gap: 5px;
   align-items: center;
-  margin-left: 600px;
+  margin-left: auto;
   width: 25%;
 }
 
@@ -207,11 +131,33 @@ body {
   cursor: pointer;
 }
 
-/* Cards Grid */
+/* RTL Filter adjustments */
+[dir="rtl"] .filters {
+  justify-content: right;
+  flex-direction: row-reverse;
+}
 
+[dir="rtl"] .sort-container {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .filter-group label {
+  text-align: right;
+}
+
+[dir="rtl"] .sort-label {
+  text-align: right;
+}
+
+[dir="rtl"] .filter-group select,
+[dir="rtl"] .sort-dropdown {
+  text-align: right;
+}
+
+/* Cards Grid */
 .cards-grid {
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(430px, 1fr)); */
   grid-template-columns: repeat(3, 1fr);
   gap: 50px;
 }
@@ -226,9 +172,7 @@ body {
 
 .card:hover {
   transform: translateY(-10px);
-  /* Lift the card up by 10 pixels */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-  /* Enhance shadow on hover */
 }
 
 .card-img {
@@ -289,31 +233,21 @@ body {
   background-color: #8d1d1d;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .search-bar {
-    flex-direction: column;
-  }
-
-  .filters {
-    flex-direction: column;
-  }
-  .sort-container {
-    
-    width: 100%;
-  }
-  .filter-group {
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    
-  }
+/* RTL Card adjustments */
+[dir="rtl"] .card-content {
+  text-align: right;
 }
 
-/* ******************************* */
-/* Pagination */
+[dir="rtl"] .card-meta {
+  justify-content: right;
+  flex-direction: row-reverse;
+}
 
+[dir="rtl"] .card-footer {
+  flex-direction: row-reverse;
+}
+
+/* Pagination */
 .pagination {
   display: flex;
   justify-content: center;
@@ -355,9 +289,12 @@ body {
   background-color: #f0f0f0;
 }
 
-/* ******************************* */
-/* Footer Section */
+/* RTL Pagination */
+[dir="rtl"] .pagination {
+  flex-direction: row-reverse;
+}
 
+/* Footer Section */
 .footer {
   background-color: #414040;
   color: #fafafa;
@@ -508,7 +445,93 @@ body {
   color: #b52626;
 }
 
+/* RTL Footer adjustments */
+[dir="rtl"] .footer-container {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-left {
+  align-items: flex-end;
+}
+
+[dir="rtl"] .description {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-columns {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-column {
+  text-align: right;
+}
+
+[dir="rtl"] .column-list {
+  text-align: right;
+}
+
+[dir="rtl"] .footer-bottom-container {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .footer-links-bottom {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .social-icons {
+  flex-direction: row-reverse;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
+  .search-bar {
+    flex-direction: column;
+  }
+
+  .search-bar input {
+    border-radius: 4px 4px 0 0;
+    border-right: 1px solid #ddd;
+  }
+
+  .search-bar button {
+    border-radius: 0 0 4px 4px;
+  }
+
+  [dir="rtl"] .search-bar input {
+    border-radius: 4px 4px 0 0;
+    border-left: 1px solid #ddd;
+  }
+
+  [dir="rtl"] .search-bar button {
+    border-radius: 0 0 4px 4px;
+  }
+
+  .filters {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sort-container {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  [dir="rtl"] .sort-container {
+    margin-right: 0;
+  }
+
+  .filter-group {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .footer-container {
     flex-direction: column;
     gap: 30px;
@@ -519,9 +542,7 @@ body {
   .footer-left {
     max-width: 100%;
     align-items: center;
-    /* Center items horizontally within .footer-left */
     margin: 0 auto;
-    /* Center the container itself */
   }
 
   .footer-columns {
@@ -537,6 +558,33 @@ body {
 
   .description {
     text-align: center;
-    /* Center the description text */
+  }
+
+  [dir="rtl"] .footer-container {
+    flex-direction: column;
+  }
+
+  [dir="rtl"] .footer-left {
+    align-items: center;
+  }
+
+  [dir="rtl"] .description {
+    text-align: center;
+  }
+
+  [dir="rtl"] .footer-columns {
+    flex-direction: column;
+  }
+
+  [dir="rtl"] .footer-column {
+    text-align: center;
+  }
+
+  [dir="rtl"] .column-list {
+    text-align: center;
+  }
+
+  [dir="rtl"] .footer-bottom-container {
+    flex-direction: column;
   }
 }

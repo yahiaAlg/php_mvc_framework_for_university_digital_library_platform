@@ -196,6 +196,24 @@
         line-height: 1.5;
     }
 
+    /* RTL Support */
+    .rtl .dashboard-header {
+        flex-direction: row-reverse;
+    }
+
+    .rtl .project-meta {
+        flex-direction: row-reverse;
+    }
+
+    .rtl .project-info {
+        text-align: right;
+    }
+
+    .rtl .project-actions {
+        flex-direction: row-reverse;
+        justify-content: flex-start;
+    }
+
     @media (max-width: 768px) {
         .dashboard-header {
             flex-direction: column;
@@ -220,14 +238,27 @@
         .project-actions {
             justify-content: center;
         }
+
+        .rtl .dashboard-header {
+            flex-direction: column;
+        }
+
+        .rtl .project-meta {
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .rtl .project-actions {
+            justify-content: center;
+        }
     }
 </style>
 
 <div class="dashboard-section">
     <div class="dashboard-container">
         <div class="dashboard-header">
-            <h1 class="dashboard-title">My Projects</h1>
-            <a href="/projects/upload" class="upload-btn">Upload New Project</a>
+            <h1 class="dashboard-title"><?php echo __('dashboard.my_projects'); ?></h1>
+            <a href="/projects/upload" class="upload-btn"><?php echo __('dashboard.upload_new_project'); ?></a>
         </div>
 
         <?php if (!empty($projects['data'])): ?>
@@ -237,7 +268,7 @@
                         <h3 class="project-title"><?php echo $view->escape($project['title']); ?></h3>
 
                         <div class="project-meta">
-                            <span>Year: <?php echo $view->escape($project['year']); ?></span>
+                            <span><?php echo __('dashboard.year'); ?>: <?php echo $view->escape($project['year']); ?></span>
                             <span class="project-status status-<?php echo $project['status']; ?>">
                                 <?php echo $view->escape(ucfirst($project['status'])); ?>
                             </span>
@@ -248,23 +279,23 @@
                         </p>
 
                         <div class="project-info">
-                            <strong>Author:</strong> <?php echo $view->escape($project['author_name']); ?><br>
-                            <strong>Supervisor:</strong> <?php echo $view->escape($project['supervisor']); ?>
+                            <strong><?php echo __('dashboard.author'); ?>:</strong> <?php echo $view->escape($project['author_name']); ?><br>
+                            <strong><?php echo __('dashboard.supervisor'); ?>:</strong> <?php echo $view->escape($project['supervisor']); ?>
                         </div>
 
                         <div class="project-actions">
-                            <a href="/projects/<?php echo $project['id']; ?>" class="action-btn view-btn">View</a>
-                            <a href="/projects/<?php echo $project['id']; ?>/edit" class="action-btn edit-btn">Edit</a>
-                            <a href="/projects/<?php echo $project['id']; ?>/delete" class="action-btn delete-btn">Delete</a>
+                            <a href="/projects/<?php echo $project['id']; ?>" class="action-btn view-btn"><?php echo __('dashboard.view'); ?></a>
+                            <a href="/projects/<?php echo $project['id']; ?>/edit" class="action-btn edit-btn"><?php echo __('dashboard.edit'); ?></a>
+                            <a href="/projects/<?php echo $project['id']; ?>/delete" class="action-btn delete-btn"><?php echo __('dashboard.delete'); ?></a>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
             <div class="empty-state">
-                <h3>No Projects Yet</h3>
-                <p>You haven't uploaded any projects yet. Start by uploading your first project to share your research with the community.</p>
-                <a href="/projects/upload" class="upload-btn">Upload Your First Project</a>
+                <h3><?php echo __('dashboard.no_projects_yet'); ?></h3>
+                <p><?php echo __('dashboard.no_projects_message'); ?></p>
+                <a href="/projects/upload" class="upload-btn"><?php echo __('dashboard.upload_first_project'); ?></a>
             </div>
         <?php endif; ?>
     </div>

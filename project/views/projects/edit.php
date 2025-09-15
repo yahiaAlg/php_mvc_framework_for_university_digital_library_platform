@@ -176,6 +176,34 @@
         color: #ddd;
     }
 
+    /* RTL Support */
+    .rtl .edit-project-container {
+        text-align: right;
+    }
+
+    .rtl .edit-project-title {
+        text-align: center;
+    }
+
+    .rtl .form-input,
+    .rtl .form-textarea {
+        text-align: right;
+        direction: rtl;
+    }
+
+    .rtl .form-input::placeholder,
+    .rtl .form-textarea::placeholder {
+        text-align: right;
+    }
+
+    .rtl .form-row {
+        flex-direction: row-reverse;
+    }
+
+    .rtl .form-actions {
+        flex-direction: row-reverse;
+    }
+
     @media (max-width: 768px) {
         .edit-project-container {
             padding: 30px 20px;
@@ -199,33 +227,41 @@
             width: 100%;
             margin: 5px 0;
         }
+
+        .rtl .form-row {
+            flex-direction: column;
+        }
+
+        .rtl .form-actions {
+            flex-direction: column;
+        }
     }
 </style>
 
 <div class="edit-project-section">
     <div class="edit-project-container">
-        <h1 class="edit-project-title">Edit Project</h1>
+        <h1 class="edit-project-title"><?php echo __('project_management.edit_project'); ?></h1>
 
         <form method="POST" enctype="multipart/form-data">
             <div class="form-group">
-                <label class="form-label">Project Title</label>
+                <label class="form-label"><?php echo __('project_management.project_title'); ?></label>
                 <input type="text" name="title" class="form-input"
                     value="<?php echo $view->escape($project['title']); ?>" required>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Description</label>
+                <label class="form-label"><?php echo __('project_management.description'); ?></label>
                 <textarea name="description" class="form-textarea" required><?php echo $view->escape($project['description']); ?></textarea>
             </div>
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Author Name</label>
+                    <label class="form-label"><?php echo __('project_management.author_name'); ?></label>
                     <input type="text" name="author_name" class="form-input"
                         value="<?php echo $view->escape($project['author_name']); ?>" required>
                 </div>
                 <div class="form-group">
-                    <label class="form-label">Supervisor</label>
+                    <label class="form-label"><?php echo __('project_management.supervisor'); ?></label>
                     <input type="text" name="supervisor" class="form-input"
                         value="<?php echo $view->escape($project['supervisor']); ?>" required>
                 </div>
@@ -233,7 +269,7 @@
 
             <div class="form-row">
                 <div class="form-group">
-                    <label class="form-label">Year</label>
+                    <label class="form-label"><?php echo __('project_management.year'); ?></label>
                     <input type="number" name="year" class="form-input"
                         value="<?php echo $view->escape($project['year']); ?>"
                         min="2000" max="<?php echo date('Y'); ?>" required>
@@ -241,36 +277,36 @@
             </div>
 
             <div class="form-group">
-                <label class="form-label">Keywords</label>
+                <label class="form-label"><?php echo __('project_management.keywords'); ?></label>
                 <input type="text" name="keywords" class="form-input"
                     value="<?php echo $view->escape($project['keywords']); ?>"
-                    placeholder="Separate keywords with commas" required>
+                    placeholder="<?php echo __('project_management.keywords_placeholder'); ?>" required>
             </div>
 
             <div class="current-file-section">
-                <div class="current-file-title">Current File</div>
+                <div class="current-file-title"><?php echo __('project_management.current_file'); ?></div>
                 <div class="current-file-name">
                     <?php echo $view->escape(basename($project['file_path'])); ?>
                 </div>
             </div>
             <div class="file-upload-section">
-                <div class="file-upload-title">Image File</div>
+                <div class="file-upload-title"><?php echo __('project_management.image_file'); ?></div>
                 <div class="file-upload-note">
-                    Upload your image document (PNG, JPEG, JPG). Maximum file size: 10MB
+                    <?php echo __('project_management.image_file_note'); ?>
                 </div>
                 <input type="file" name="image_file" class="file-input" accept=".png,.jpeg,.jpg">
             </div>
             <div class="file-upload-section">
-                <div class="file-upload-title">Replace File (Optional)</div>
+                <div class="file-upload-title"><?php echo __('project_management.replace_file'); ?></div>
                 <div class="file-upload-note">
-                    Upload a new file to replace the current one (PDF, DOC, DOCX). Maximum file size: 10MB
+                    <?php echo __('project_management.replace_file_note'); ?>
                 </div>
                 <input type="file" name="project_file" class="file-input" accept=".pdf,.doc,.docx">
             </div>
 
             <div class="form-actions">
-                <button type="submit" class="save-btn">Save Changes</button>
-                <a href="/projects/dashboard" class="cancel-btn">Cancel</a>
+                <button type="submit" class="save-btn"><?php echo __('project_management.save_changes'); ?></button>
+                <a href="/projects/dashboard" class="cancel-btn"><?php echo __('project_management.cancel'); ?></a>
             </div>
         </form>
     </div>

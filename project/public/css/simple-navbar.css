@@ -14,9 +14,9 @@
     align-items: center;
     background-color: #414040;
     color: #fff;
-
     height: 70px;
     width: 100%;
+    padding: 0 20px;
 }
 
 .navbar a {
@@ -51,6 +51,67 @@
     letter-spacing: 1.5px;
 }
 
+/* Right side navigation container */
+.navbar-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Language selector styling */
+.language-selector {
+    position: relative;
+}
+
+.current-language {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    color: #ddd;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.current-language:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.language-flag {
+    margin-right: 8px;
+    font-size: 1.1em;
+}
+
+.dropdown-menu {
+    background: #414040;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    min-width: 150px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.language-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: #ddd;
+    transition: background-color 0.2s;
+    font-size: 14px;
+    width: 100%;
+    border: none;
+    background: transparent;
+}
+
+.language-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
 .sign-in-link {
     background-color: #b52626;
     color: #ddd;
@@ -58,6 +119,7 @@
     border-radius: 25px;
     text-decoration: none;
     font-size: 18px;
+    transition: all 0.2s ease;
 }
 
 .sign-in-link:hover {
@@ -79,9 +141,122 @@
     text-decoration: none;
     font-size: 18px;
     border: none;
+    transition: all 0.2s ease;
 }
 
 .user-dropdown .contact-btn:hover {
     background-color: #8d1d1d;
     color: #ddd;
+}
+
+.user-dropdown .dropdown-menu {
+    background: #414040;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.user-dropdown .dropdown-item {
+    color: #ddd;
+    padding: 8px 16px;
+}
+
+.user-dropdown .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+/* RTL Styles for Arabic Language - Simple Navbar Specific */
+[dir="rtl"] .navbar {
+    direction: rtl;
+}
+
+[dir="rtl"] .logo {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .navbar-right {
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .language-flag {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+[dir="rtl"] .user-dropdown .dropdown-menu {
+    right: auto;
+    left: 0;
+}
+
+[dir="rtl"] .dropdown-menu {
+    right: auto;
+    left: 0;
+}
+
+[dir="rtl"] .language-option {
+    text-align: right;
+    flex-direction: row-reverse;
+}
+
+[dir="rtl"] .user-dropdown .dropdown-item {
+    text-align: right;
+}
+
+/* Icon adjustments for RTL */
+[dir="rtl"] .bi-person-circle {
+    transform: none;
+}
+
+[dir="rtl"] .user-dropdown .dropdown-item .bi {
+    margin-right: 0;
+    margin-left: 8px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .navbar-right {
+        gap: 10px;
+    }
+
+    .current-language {
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .sign-in-link,
+    .user-dropdown .contact-btn {
+        padding: 8px 16px;
+        font-size: 16px;
+    }
+
+    .logo-title {
+        font-size: 18px;
+    }
+
+    .logo-subtitle {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-text {
+        display: none;
+    }
+
+    .navbar-right {
+        gap: 8px;
+    }
+
+    .current-language span:not(.language-flag) {
+        display: none;
+    }
+
+    .language-flag {
+        margin: 0;
+    }
 }

@@ -199,22 +199,22 @@
 <div class="admin-section">
     <div class="admin-container">
         <div class="admin-header">
-            <h1 class="admin-title">Admin Dashboard</h1>
+            <h1 class="admin-title"><?php echo __('admin.dashboard'); ?></h1>
         </div>
 
         <!-- Statistics Cards -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number"><?php echo $stats['total_users']; ?></div>
-                <div class="stat-label">Total Users</div>
+                <div class="stat-label"><?php echo __('admin.total_users'); ?></div>
             </div>
             <div class="stat-card">
                 <div class="stat-number"><?php echo $stats['total_projects']; ?></div>
-                <div class="stat-label">Total Projects</div>
+                <div class="stat-label"><?php echo __('admin.total_projects'); ?></div>
             </div>
             <div class="stat-card">
                 <div class="stat-number"><?php echo $stats['pending_projects']; ?></div>
-                <div class="stat-label">Pending Projects</div>
+                <div class="stat-label"><?php echo __('admin.pending_projects'); ?></div>
             </div>
         </div>
 
@@ -222,24 +222,24 @@
         <div class="admin-nav">
             <a href="/admin/users" class="admin-nav-card">
                 <div class="nav-icon">👥</div>
-                <div class="nav-title">Manage Users</div>
-                <div class="nav-description">View, edit, and manage user accounts</div>
+                <div class="nav-title"><?php echo __('admin.manage_users'); ?></div>
+                <div class="nav-description"><?php echo __('admin.view_edit_manage_users'); ?></div>
             </a>
             <a href="/admin/specializations" class="admin-nav-card">
                 <div class="nav-icon">🎓</div>
-                <div class="nav-title">Specializations</div>
-                <div class="nav-description">Add and manage academic specializations</div>
+                <div class="nav-title"><?php echo __('admin.specializations'); ?></div>
+                <div class="nav-description"><?php echo __('admin.add_manage_specializations'); ?></div>
             </a>
             <a href="/admin/projects" class="admin-nav-card">
                 <div class="nav-icon">📚</div>
-                <div class="nav-title">All Projects</div>
-                <div class="nav-description">Browse and manage all projects</div>
+                <div class="nav-title"><?php echo __('admin.projects'); ?></div>
+                <div class="nav-description"><?php echo __('admin.browse_manage_projects'); ?></div>
             </a>
         </div>
 
         <!-- Recent Projects -->
         <div class="recent-section">
-            <h2 class="recent-title">Recent Projects</h2>
+            <h2 class="recent-title"><?php echo __('admin.recent_projects'); ?></h2>
             <?php if (!empty($stats['recent_projects'])): ?>
                 <ul class="recent-list">
                     <?php foreach ($stats['recent_projects'] as $project): ?>
@@ -247,7 +247,7 @@
                             <div class="recent-info">
                                 <div class="recent-project-title"><?php echo $view->escape($project['title']); ?></div>
                                 <div class="recent-meta">
-                                    by <?php echo $view->escape($project['author_name']); ?> •
+                                    <?php echo __('admin.by'); ?> <?php echo $view->escape($project['author_name']); ?> •
                                     <?php echo date('M j, Y', strtotime($project['created_at'])); ?>
                                 </div>
                             </div>
@@ -258,7 +258,7 @@
                     <?php endforeach; ?>
                 </ul>
             <?php else: ?>
-                <p style="color: #666; text-align: center; padding: 20px;">No recent projects found.</p>
+                <p style="color: #666; text-align: center; padding: 20px;"><?php echo __('admin.no_recent_projects'); ?></p>
             <?php endif; ?>
         </div>
     </div>
